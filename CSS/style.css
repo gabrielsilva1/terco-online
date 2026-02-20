@@ -1,0 +1,49 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Times New Roman', Times, serif;
+  background-color: brown;
+}
+
+header {
+  background-color: yellow;
+  height: 80px;
+}
+
+header #navbar {
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header #navbar .nav_brandy {
+  text-decoration: none;
+  font-size: 1,5rem;
+  font-weight: 700;
+  color: black;
+}
+
+header #navbar .nav_list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+header #navbar .nav_list .nav_item a {
+  text-decoration: none;
+  color: black;
+}
+
+header #navbar .nav_list .nav_item a:hover{
+  color: blue;
+  transition: 0,3s;
+}
