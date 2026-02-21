@@ -1,10 +1,11 @@
 # 📿 Terço Online
-Auxilia as pessoas a rezarem o terço.
 
-* Linguagens: HTML e CSS
+## 📝 Sobre o projeto
+Este é um esboço de um site para o **Terço Online**, desenvolvido com HTML5 e CSS3 para praticar fundamentos de desenvolvimento web.
 
-* Acesse o site 
+## 🛠️ Tecnologias utilizadas
+- **HTML5**: Estrutura do conteúdo.
+- **CSS3**: Estilização e layout.
 
-## 🛠  
-
-Navegue pelos mistérios.A página traz um texto inicial comum a todos os mistérios.
+## 🚀 Como visualizar
+Basta abrir o arquivo `index.html` em qualquer navegador.
