@@ -8,4 +8,4 @@ Este é um esboço de um site para o **Terço Online**, desenvolvido com HTML5 e
 - **CSS3**: Estilização e layout.
 
 ## 🚀 Como visualizar
-Basta abrir o arquivo `index.html` em qualquer navegador.
+Basta abrir o arquivo `index.html` em qualquer navegador para visualizá-lo.
