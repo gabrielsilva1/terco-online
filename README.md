@@ -1,10 +1,10 @@
-# Nome do Projeto
+# 📿 Terço Online
 Auxilia as pessoas a rezarem o terço.
 
-## 🚀 Tecnologias
 * Linguagens: HTML e CSS
 
-## 📦 Como instalar
+* Acesse o site 
 
-## 🛠️ Como usar
+## 🛠  
+
 Navegue pelos mistérios.A página traz um texto inicial comum a todos os mistérios.
