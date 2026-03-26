@@ -5,45 +5,59 @@
 }
 
 body{
-  font-family: 'Times New Roman', Times, serif;
-  background-color: brown;
+  /*font-family:'Times New Roman', Times, serif;
+  background-color:brown;*/
 }
 
 header {
-  background-color: yellow;
+  background-color: navy;
   height: 80px;
 }
 
 header #navbar {
-  background-color: blue;
+  background-color: royalblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 1 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-header #navbar .nav_brandy {
-  text-decoration: none;
-  font-size: 1,5rem;
+header #navbar .nav_brand a {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: black;
+  text-decoration: none;
+  color: white;
 }
 
 header #navbar .nav_list {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   list-style: none;
   display: flex;
   align-items: center;
   gap: 2rem;
+  margin: 0;
+  padding: 0;
+
 }
 
 header #navbar .nav_list .nav_item a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 header #navbar .nav_list .nav_item a:hover{
   color: blue;
   transition: 0,3s;
+}
+
+main{
+  background-color:white;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.6;
+  text-align: justify;
 }
