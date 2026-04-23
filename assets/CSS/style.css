@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-body{
-  /*font-family:'Times New Roman', Times, serif;
-  background-color:brown;*/
-}
-
 header {
   background-color: navy;
   height: 80px;
@@ -25,11 +20,16 @@ header #navbar {
 }
 
 header #navbar .nav_brand a {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  font-weight: 700px;
   text-decoration: none;
   color: white;
+}
+
+header #navbar .nav_brand a:hover {
+  color: gold;
+  transition: 0,3s;
 }
 
 header #navbar .nav_list {
@@ -48,16 +48,33 @@ header #navbar .nav_list .nav_item a {
   color: white;
 }
 
-header #navbar .nav_list .nav_item a:hover{
-  color: blue;
+header #navbar .nav_list .nav_item a:hover {
+  color: gold;
   transition: 0,3s;
 }
 
-main{
+main {
   background-color:white;
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px;
   line-height: 1.6;
   text-align: justify;
+}
+
+main .main_item {
+  border: 6px solid royalblue;
+  padding: 15px 25px;
+  border-radius: 6px;
+}
+
+footer {
+  background-color: navy;
+  height: 30px;
+}
+
+footer .footer_item {
+  color: white;
+  text-align: center;
+
 }
