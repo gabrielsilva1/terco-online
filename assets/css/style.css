@@ -1,0 +1,217 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS (Fundo mais suave e fontes)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f5f0; /* Tom marfim/creme suave, ótimo para leitura */
+    font-family: 'Georgia', Times, serif; /* Fonte elegante e sagrada */
+    color: #2b2b2b; /* Grafite escuro em vez de preto puro (reduz fadiga visual) */
+}
+
+images {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   HEADER & NAVBAR (Unificados e Elegantes)
+   ========================================================================== */
+header {
+    background-color: #0b1d3a; /* Azul marinho profundo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Menu fica fixo no topo ao rolar a página */
+}
+
+header #navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header #navbar .nav_brand a {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+header #navbar .nav_brand a:hover {
+    color: #d4af37; /* Dourado metálico */
+    transition: color 0.3s ease;
+}
+
+header #navbar .nav_list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+header #navbar .nav_list .nav_item a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+header #navbar .nav_list .nav_item a:hover {
+    color: #d4af37; /* Dourado */
+    background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil no hover */
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    header #navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    header #navbar .nav_list {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL (Main)
+   ========================================================================== */
+main {
+    background-color: #ffffff; /* Fundo branco apenas no bloco do texto */
+    max-width: 700px; /* Reduzido levemente para melhorar a linha de leitura */
+    margin: 40px auto;
+    padding: 40px 35px;
+    border-radius: 12px; /* Bordas levemente arredondadas no bloco de texto */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Sombra suave ao redor do bloco */
+    line-height: 1.8; /* Mais espaçamento entre linhas */
+    text-align: justify;
+}
+
+/* Estilização dos títulos internos */
+main h2, main h3 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #0b1d3a;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+}
+
+main p {
+    margin-bottom: 18px; /* Espaço confortável entre parágrafos */
+    text-indent: 1.5em; /* Parágrafo tradicional de livro */
+}
+
+/* Estilo para a linha divisória */
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    margin: 30px 0;
+}
+
+/* ==========================================================================
+   IMAGENS DO TERÇO
+   ========================================================================== */
+.images_misterio {
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain; /* 'contain' impede que a arte sacra seja cortada */
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    margin: 25px 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtítulo dos dias da semana nos mistérios */
+.dias_semana {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-indent: 0; /* Tira o recuo do parágrafo */
+}
+
+/* ==========================================================================
+   LISTA DE ORAÇÕES E MISTÉRIOS
+   ========================================================================== */
+.lista_misterio {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.lista_misterio li {
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background-color: #fcfbfa;
+    border-left: 4px solid #0b1d3a; /* Linha lateral elegante */
+    border-radius: 0 8px 8px 0;
+    font-size: 17px;
+    transition: transform 0.2s ease;
+}
+
+/* Efeito ao passar o mouse em cada oração da lista */
+.lista_misterio li:hover {
+    transform: translateX(5px);
+    background-color: #f7f4ee;
+}
+
+/* Mensagem de ajuda inicial */
+.mensagem_ajuda {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    text-indent: 0;
+}
+
+/* Botão voltar */
+.btn_voltar {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #0b1d3a;
+    font-weight: bold;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.btn_voltar:hover {
+    color: #d4af37;
+}
+
+/* ==========================================================================
+   FOOTER (Rodapé)
+   ========================================================================== */
+footer {
+    background-color: #0b1d3a;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer .footer_item {
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-indent: 0;
+}
