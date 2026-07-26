@@ -1,6 +1,6 @@
 const containerInicial = document.getElementById('texto_oracao_inicial');
 const containerMisterio = document.getElementById('conteudo_misterio');
-let dadosMisterios = null; // Guardará os dados do JSON globalmente
+let dadosMisterios = null;
 
 // 1. BUSCA OS DADOS NO JSON ASSIM QUE O SITE ABRE
 function iniciarSite() {
@@ -10,22 +10,19 @@ function iniciarSite() {
             return resposta.json();
         })
         .then(dados => {
-            dadosMisterios = dados; // Salva os dados para usar depois
+            dadosMisterios = dados;
 
-            // Pega o objeto da oração inicial
-            const oracao = dados.oracao_inicial;
+            // Carrega o texto explicativo sobre a história do terço na página principal
+            const historia = dados.historia_terco;
 
-            // Verifica se existe o campo "imagem" no JSON e cria a tag HTML correspondente
-            // Ela usará a classe "images_misterio" que você já estilizou no CSS
-            const imagemHTML = oracao.imagem ? `<img src="${oracao.imagem}" alt="${oracao.titulo}" class="images_misterio">` : '';
+            const imagemHTML = historia.imagem
+                ? `<img src="${historia.imagem}" alt="${historia.titulo}" class="images_misterio">`
+                : '';
 
-            // Mapeia os parágrafos do texto
-            const paragrafosHTML = oracao.paragrafos.map(p => `<p>${p}</p>`).join('');
+            const paragrafosHTML = historia.paragrafos.map(p => `<p>${p}</p>`).join('');
 
-            // Junta tudo dentro do container da oração inicial (Título + Imagem + Textos)
-            containerInicial.innerHTML = `<h2>${oracao.titulo}</h2>${imagemHTML}${paragrafosHTML}`;
+            containerInicial.innerHTML = `<h2>${historia.titulo}</h2>${imagemHTML}${paragrafosHTML}`;
 
-            // Verifica qual "página" deve exibir logo no primeiro carregamento
             roteador();
         })
         .catch(erro => console.error("Erro:", erro));
@@ -33,18 +30,15 @@ function iniciarSite() {
 
 // 2. O ROTEADOR (Controla o que aparece na tela baseado na URL)
 function roteador() {
-    // Pega o que está depois da '#' na URL (ex: 'gozosos', 'dolorosos')
     const paginaAtual = window.location.hash.replace('#', '');
 
-    // Se não tiver nada na hash (página inicial)
     if (!paginaAtual) {
-        containerInicial.style.display = "block"; // Mostra oração inicial e a imagem nova
-        containerMisterio.style.display = "none"; // Esconde os mistérios
-        document.title = "Terço Online";
+        containerInicial.style.display = "block"; // Mostra o texto informativo da página inicial
+        containerMisterio.style.display = "none";
+        document.title = "Terço Online - História do Terço";
     } else {
-        // Se o usuário estiver em uma "página" de mistério
-        containerInicial.style.display = "none"; // Esconde a oração inicial
-        containerMisterio.style.display = "block"; // Mostra a área do mistério
+        containerInicial.style.display = "none";
+        containerMisterio.style.display = "block";
         exibirMisterio(paginaAtual);
     }
 }
@@ -58,7 +52,6 @@ function exibirMisterio(chaveMisterio) {
     if (misterioSelecionado) {
         document.title = `Terço Online - ${misterioSelecionado.titulo}`;
 
-        // Mapeia os itens criando elementos da lista
         const itensHTML = misterioSelecionado.itens.map(item => `<li>${item}</li>`).join('');
 
         containerMisterio.innerHTML = `
@@ -67,15 +60,12 @@ function exibirMisterio(chaveMisterio) {
             <img src="${misterioSelecionado.imagem}" alt="${misterioSelecionado.titulo}" class="images_misterio">
             <ul class="lista_misterio">${itensHTML}</ul>
             <br>
-            <a href="#" class="btn_voltar">← Voltar para a Oração Inicial</a>
+            <a href="#" class="btn_voltar">← Voltar para a Página Inicial</a>
         `;
     } else {
         containerMisterio.innerHTML = `<p class="mensagem_ajuda">Mistério não encontrado.</p>`;
     }
 }
 
-// Ouvinte 1: Ativa o roteador toda vez que o usuário clica em um link do menu (muda a hash)
 window.addEventListener('hashchange', roteador);
-
-// Ouvinte 2: Roda o fetch inicial assim que o HTML carrega
 window.addEventListener('DOMContentLoaded', iniciarSite);
