@@ -127,6 +127,63 @@ hr {
 }
 
 /* ==========================================================================
+   LISTA SEMÂNTICA DE MISTÉRIOS NA PÁGINA INICIAL
+   ========================================================================== */
+.lista_misterios_inicio {
+    list-style: none; /* Remove as bolinhas da lista */
+    padding: 0;
+    margin: 20px 0;
+}
+
+.lista_misterios_inicio li {
+    background-color: #fcfbfa;
+    border: 1px solid #e2ddcf;
+    border-left: 5px solid #0b1d3a;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.lista_misterios_inicio li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-left-color: #d4af37;
+}
+
+.btn_misterio_card {
+    display: inline-block;
+    background-color: #0b1d3a;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn_misterio_card:hover {
+    background-color: #d4af37;
+    color: #0b1d3a !important;
+}
+
+.info_misterio_card {
+    font-size: 15px;
+    color: #444444;
+    line-height: 1.5;
+    margin-bottom: 0 !important;
+    text-indent: 0 !important;
+}
+
+.info_misterio_card strong {
+    color: #0b1d3a;
+}
+
+/* ==========================================================================
    IMAGENS DO TERÇO
    ========================================================================== */
 .images_misterio {

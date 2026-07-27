@@ -30,6 +30,8 @@ function iniciarSite() {
 
 // 2. O ROTEADOR (Controla o que aparece na tela baseado na URL)
 function roteador() {
+    // Rola a tela até o topo sempre que trocar de visualização ou clicar em um mistério
+    window.scrollTo(0, 0);
     const paginaAtual = window.location.hash.replace('#', '');
 
     if (!paginaAtual) {

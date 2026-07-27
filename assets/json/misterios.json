@@ -10,9 +10,10 @@
 "É exatamente dessa estrutura que nasce a palavra Terço. O terço é literalmente a terça parte do Rosário. Quando você reza um terço, está completando uma das três partes do Rosário clássico, totalizando 50 Ave-Marias.",
 "<h4>Os 3 Mistérios e os Dias da Semana</h4>",
 "Tradicionalmente, a Igreja organizou a meditação desses três mistérios ao longo dos dias da semana, permitindo que os fiéis passem por toda a vida de Jesus e Maria. Cada mistério foca em uma etapa diferente dessa história sagrada:",
-"<strong>\u2022 Mistérios Gozosos</strong>: relembram a infância de Jesus e a alegria da encarnação. Dias de oração: Segundas-feiras e Quintas-feiras.",
-"<strong>\u2022 Mistérios Dolorosos</strong>: meditam sobre a paixão e a morte de Jesus na cruz, refletindo sobre o seu sacrifício. Dias de oração: Terças-feiras e Sextas-feiras.",
-"<strong>\u2022 Mistérios Gloriosos</strong>: celebram a vitória de Cristo sobre a morte com a sua Ressurreição e a coroação de Maria no céu. Dias de oração: Quartas-feiras, Sábados e Domingos.",
+"<h3>Os 3 Mistérios e os Dias da Semana</h3>",
+"Tradicionalmente, a Igreja organizou a meditação desses três mistérios ao longo dos dias da semana, permitindo que os fiéis passem por toda a vida de Jesus e Maria. Cada mistério foca em uma etapa diferente dessa história sagrada:",
+"<ul class='lista_misterios_inicio'><li><a href='#gozosos' class='btn_misterio_card'>Mistérios Gozosos</a><p class='info_misterio_card'><strong>Relembram:</strong> a infância de Jesus e a alegria da encarnação.<br><strong>Dias de oração:</strong> Segundas-feiras e Sábados.</p></li><li><a href='#dolorosos' class='btn_misterio_card'>Mistérios Dolorosos</a><p class='info_misterio_card'><strong>Meditam sobre:</strong> a paixão e a morte de Jesus na cruz, refletindo sobre o seu sacrifício.<br><strong>Dias de oração:</strong> Terças-feiras e Sextas-feiras.</p></li><li><a href='#gloriosos' class='btn_misterio_card'>Mistérios Gloriosos</a><p class='info_misterio_card'><strong>Celebram:</strong> a vitória de Cristo sobre a morte com a sua Ressurreição e a coroação de Maria no céu.<br><strong>Dias de oração:</strong> Quartas-feiras, Sábados e Domingos.</p></li></ul>",
+"Dessa forma, ao rezar o Terço seguindo os dias da semana, o católico percorre o Rosário inteiro em apenas três etapas semanais, mantendo viva a memória dos episódios mais marcantes da fé.",
 "Dessa forma, ao rezar o Terço seguindo os dias da semana, o católico percorre o Rosário inteiro em apenas três etapas semanais, mantendo viva a memória dos episódios mais marcantes da fé."
     ]
   },
