@@ -1,100 +1,186 @@
 {
   "historia_terco": {
-    "titulo":"A Origem do Rosário e do Terço",
+    "titulo": "A Origem do Rosário e do Terço",
     "imagem": "assets/images/imagem_terco.png",
     "paragrafos": [
-"A história do Rosário e do Terço remonta à Idade Média e nasceu de uma necessidade prática de oração. Nos mosteiros medievais, os monges tinham o costume de recitar diariamente os 150 Salmos. Contudo, essa prática era inacessível para a maior parte da população leiga, já que as Escrituras e a liturgia existiam apenas em latim — uma língua que o povo simples não dominava — e a imensa maioria das pessoas não sabia ler. Para permitir que os fiéis participassem dessa mesma rotina espiritual, a Igreja criou uma alternativa popular conhecida como o 'Saltério dos Leigos': em vez de ler os 150 Salmos em latim, o povo passou a recitar 150 Ave-Marias memorizadas, contando as orações com o auxílio de nós ou pedrinhas em um cordão.",
-"Essa prática ganhou contornos definitivos no ano de 1214, através de São Domingos de Gusmão. Segundo a tradição católica, o santo recebeu a visita de Nossa Senhora, que lhe entregou o Rosário como uma arma espiritual para converter os hereges e combater as dificuldades da época. A partir dali, a devoção se espalhou pelo mundo.",
-"<h4>O Rosário Completo e a Divisão do Terço</h4>",
-"O nome Rosário vem da ideia de oferecer uma \"coroa de rosas\" à Nossa Senhora. Em sua forma clássica e tradicional, o Rosário é composto por 150 Ave-Marias, divididas em 3 grandes blocos chamados de Mistérios (Gozosos, Dolorosos e Gloriosos). Cada mistério possui 5 dezenas (50 Ave-Marias).",
-"É exatamente dessa estrutura que nasce a palavra Terço. O terço é literalmente a terça parte do Rosário. Quando você reza um terço, está completando uma das três partes do Rosário clássico, totalizando 50 Ave-Marias.",
-"<h4>Os 3 Mistérios e os Dias da Semana</h4>",
-"Tradicionalmente, a Igreja organizou a meditação desses três mistérios ao longo dos dias da semana, permitindo que os fiéis passem por toda a vida de Jesus e Maria. Cada mistério foca em uma etapa diferente dessa história sagrada:",
-"<h3>Os 3 Mistérios e os Dias da Semana</h3>",
-"Tradicionalmente, a Igreja organizou a meditação desses três mistérios ao longo dos dias da semana, permitindo que os fiéis passem por toda a vida de Jesus e Maria. Cada mistério foca em uma etapa diferente dessa história sagrada:",
-"<ul class='lista_misterios_inicio'><li><a href='#gozosos' class='btn_misterio_card'>Mistérios Gozosos</a><p class='info_misterio_card'><strong>Relembram:</strong> a infância de Jesus e a alegria da encarnação.<br><strong>Dias de oração:</strong> Segundas-feiras e Sábados.</p></li><li><a href='#dolorosos' class='btn_misterio_card'>Mistérios Dolorosos</a><p class='info_misterio_card'><strong>Meditam sobre:</strong> a paixão e a morte de Jesus na cruz, refletindo sobre o seu sacrifício.<br><strong>Dias de oração:</strong> Terças-feiras e Sextas-feiras.</p></li><li><a href='#gloriosos' class='btn_misterio_card'>Mistérios Gloriosos</a><p class='info_misterio_card'><strong>Celebram:</strong> a vitória de Cristo sobre a morte com a sua Ressurreição e a coroação de Maria no céu.<br><strong>Dias de oração:</strong> Quartas-feiras, Sábados e Domingos.</p></li></ul>",
-"Dessa forma, ao rezar o Terço seguindo os dias da semana, o católico percorre o Rosário inteiro em apenas três etapas semanais, mantendo viva a memória dos episódios mais marcantes da fé.",
-"Dessa forma, ao rezar o Terço seguindo os dias da semana, o católico percorre o Rosário inteiro em apenas três etapas semanais, mantendo viva a memória dos episódios mais marcantes da fé."
+      "A história do Rosário e do Terço remonta à Idade Média e nasceu de uma necessidade prática de oração. Nos mosteiros medievais, os monges tinham o costume de recitar diariamente os 150 Salmos. Contudo, essa prática era inacessível para a maior parte da população leiga, já que as Escrituras e a liturgia existiam apenas em latim — uma língua que o povo simples não dominava — e a imensa maioria das pessoas não sabia ler. Para permitir que os fiéis participassem dessa mesma rotina espiritual, a Igreja criou uma alternativa popular conhecida como o 'Saltério dos Leigos': em vez de ler os 150 Salmos em latim, o povo passou a recitar 150 Ave-Marias memorizadas, contando as orações com o auxílio de nós ou pedrinhas em um cordão.",
+      "Essa prática ganhou contornos definitivos no ano de 1214, através de São Domingos de Gusmão. Segundo a tradição católica, o santo recebeu a visita de Nossa Senhora, que lhe entregou o Rosário como uma arma espiritual para converter os hereges e combater as dificuldades da época. A partir dali, a devoção se espalhou pelo mundo.",
+      "<h4>O Rosário Completo e a Divisão do Terço</h4>",
+      "O nome Rosário vem da ideia de oferecer uma 'coroa de rosas' à Nossa Senhora. Em sua forma clássica e tradicional, o Rosário é composto por 150 Ave-Marias, divididas em 3 grandes blocos chamados de Mistérios (Gozosos, Dolorosos e Gloriosos). Cada mistério possui 5 dezenas (50 Ave-Marias).",
+      "É exatamente dessa estrutura que nasce a palavra Terço. O terço é literalmente a terça parte do Rosário. Quando você reza um terço, está completando uma das três partes do Rosário clássico, totalizando 50 Ave-Marias.",
+      "<h4>Os 3 Mistérios e os Dias da Semana</h4>",
+      "Tradicionalmente, a Igreja organizou a meditação desses três mistérios ao longo dos dias da semana, permitindo que os fiéis passem por toda a vida de Jesus e Maria. Cada mistério foca em uma etapa diferente dessa história sagrada:",
+      "<ul class='lista_misterios_inicio'><li><a href='#gozosos' class='btn_misterio_card'>Mistérios Gozosos</a><p class='info_misterio_card'><strong>Relembram:</strong> a infância de Jesus e a alegria da encarnação.<br><strong>Dias de oração:</strong> Segundas-feiras e Quintas-feiras.</p></li><li><a href='#dolorosos' class='btn_misterio_card'>Mistérios Dolorosos</a><p class='info_misterio_card'><strong>Meditam sobre:</strong> a paixão e a morte de Jesus na cruz, refletindo sobre o seu sacrifício.<br><strong>Dias de oração:</strong> Terças-feiras e Sextas-feiras.</p></li><li><a href='#gloriosos' class='btn_misterio_card'>Mistérios Gloriosos</a><p class='info_misterio_card'><strong>Celebram:</strong> a vitória de Cristo sobre a morte com a sua Ressurreição e a coroação de Maria no céu.<br><strong>Dias de oração:</strong> Quartas-feiras, Sábados e Domingos.</p></li></ul>",
+      "Dessa forma, ao rezar o Terço seguindo os dias da semana, o católico percorre o Rosário inteiro em apenas três etapas semanais, mantendo viva a memória dos episódios mais marcantes da fé."
     ]
   },
+
   "gozosos": {
     "titulo": "MISTÉRIOS GOZOSOS",
     "dias": "(Segundas e Quintas)",
-    "imagem": "assets/images/gozosos/1_misterio_GOZOSO_anunciacao_bizantino.png",
-    "itens": [
-      "--- ORAÇÕES INICIAIS ---",
+    "imagem": "",
+    "oracoes_iniciais": [
       "Pelo sinal da Santa Cruz, livrai-nos, Deus nosso Senhor, dos nossos inimigos. Em nome do Pai, e do Filho, e do Espírito Santo. Amém.",
       "Divino Jesus, eu Vos ofereço este terço que vou rezar, contemplando os mistérios da nossa redenção. Concedei-me, pela intercessão de Maria, Vossa Mãe Santíssima, a quem me dirijo, as virtudes que me são necessárias para bem rezá-lo e a graça de ganhar as indulgências anexas a esta devoção.",
-      "Ofereço este terço pela Santa Igreja, pelo Santo Papa, pela conversão dos pecadores, pelas almas do purgatório, e pela saúde, vida personal, profissional e financeira minha e de meu cônjuge.",
+      "Ofereço este terço pela Santa Igreja, pelo Santo Papa, pela conversão dos pecadores, pelas almas do purgatório, e pela saúde, vida pessoal, profissional e financeira minha e de meu cônjuge.",
       "Creio em Deus Pai todo-poderoso, criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à Mansão dos Mortos, ressuscitou ao terceiro dia; subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo; na Santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.",
-      "Pai nosso, que estais nos céus...",
-      "Ave Maria - 3 vezes (pelas virtudes da Fé, Esperança e Caridade)",
-      "Glória ao Pai...",
-      "--- CONTEMPLAÇÕES DOS MISTÉRIOS ---",
-      "Primeiro mistério gozoso: A Anunciação do Anjo à Maria e a Encarnação do Verbo no seu puríssimo ventre.",
-      "Pai Nosso - 1 vez",
-      "Ave Maria - 10 vezes",
-      "Glória ao Pai - 1 vez",
-      "Ó meu Jesus, perdoai-nos os nossos pecados, levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia.",
-      "Segundo mistério gozoso: A Visitação de Maria Santíssima à sua prima Santa Isabel.",
-      "Pai Nosso - 1 vez",
-      "Ave Maria - 10 vezes",
-      "Glória ao Pai - 1 vez",
-      "Ó meu Jesus, perdoai-nos...",
-      "Terceiro mistério gozoso: O Nascimento do Menino Jesus na gruta de Belém.",
-      "Pai Nosso - 1 vez",
-      "Ave Maria - 10 vezes",
-      "Glória ao Pai - 1 vez",
-      "Ó meu Jesus, perdoai-nos...",
-      "Quarto mistério gozoso: A Apresentação do Menino Jesus no Templo.",
-      "Pai Nosso - 1 vez",
-      "Ave Maria - 10 vezes",
-      "Glória ao Pai - 1 vez",
-      "Ó meu Jesus, perdoai-nos...",
-      "Quinto mistério gozoso: A perda e o reencontro do Menino Jesus no Templo entre os doutores.",
-      "Pai Nosso - 1 vez",
-      "Ave Maria - 10 vezes",
-      "Glória ao Pai - 1 vez",
-      "Ó meu Jesus, perdoai-nos...",
-      "Salve Rainha - 1 vez",
-      "Sinal da Cruz",
-      "FIM"
+      "Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.",
+      "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 3 vezes (pelas virtudes da Fé, Esperança e Caridade)",
+      "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez"
+    ],
+    "misterios": [
+      { "slug": "gozosos-1", "numero": "1º Mistério", "titulo": "A Anunciação do Anjo a Maria" },
+      { "slug": "gozosos-2", "numero": "2º Mistério", "titulo": "A Visitação de Maria a sua prima Isabel" },
+      { "slug": "gozosos-3", "numero": "3º Mistério", "titulo": "O Nascimento do Menino Jesus em Belém" },
+      { "slug": "gozosos-4", "numero": "4º Mistério", "titulo": "A Apresentação do Menino Jesus no Templo" },
+      { "slug": "gozosos-5", "numero": "5º Mistério", "titulo": "A Perda e o Reencontro de Jesus no Templo" }
     ]
   },
-  "dolorosos": {
+  "gozosos-1": {
+    "titulo": "Primeiro Mistério Gozoso",
+    "subtitulo": "A Anunciação do Anjo à Maria e a Encarnação do Verbo no seu puríssimo ventre.",
+    "imagem": "assets/images/gozosos/1_misterio_GOZOSO_anunciacao_bizantino.png",
+    "grupo": "gozosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gozosos-2": {
+    "titulo": "Segundo Mistério Gozoso",
+    "subtitulo": "A Visitação de Maria Santíssima à sua prima Santa Isabel.",
+    "imagem":"assets/images/gozosos/2_misterio_gozoso_visitacao.jpg",
+    "grupo": "gozosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gozosos-3": {
+    "titulo": "Terceiro Mistério Gozoso",
+    "subtitulo": "O Nascimento do Menino Jesus na gruta de Belém.",
+    "imagem":"assets/images/gozosos/3_misterio_GOZOSO_adoracao_dos_magos.png",
+    "grupo": "gozosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gozosos-4": {
+    "titulo": "Quarto Mistério Gozoso",
+    "subtitulo": "A Apresentação do Menino Jesus no Templo.",
+    "imagem":"assets/images/gozosos/4_misterio_GOZOSO_Apresentação do Senhor 1500-01. Por Hans Holbein, o Velho, atualmente no Kunsthalle de Hamburgo, na Alemanha.png",
+    "grupo": "gozosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gozosos-5": {
+    "titulo": "Quinto Mistério Gozoso",
+    "subtitulo": "A perda e o reencontro do Menino Jesus no Templo entre os doutores.",
+    "imagem":"assets/images/gozosos/5_misterio_GOZOSO_Maesta_Christ_entre os doutores_1308a11_Maesta Christ Among the Doctors_1308-11_Duccio_di_Buoninsegna.png",
+    "grupo": "gozosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+    "dolorosos": {
     "titulo": "MISTÉRIOS DOLOROSOS",
     "dias": "(Terças e Sextas)",
-    "imagem": "assets/images/dolorosos/1_misterio_DOLOROSO_Agonia_no_getsemani_Andrea_Mantegna.png",
-    "itens": [
-      "--- ORAÇÕES INICIAIS ---",
-      "Pelo sinal da Santa Cruz...",
-      "Divino Jesus...",
-      "Ofereço este terço...",
-      "Creio em Deus Pai...",
-      "Pai Nosso...",
-      "Ave Maria - 3 vezes",
-      "Glória ao Pai...",
-      "--- CONTEMPLAÇÕES DOS MISTÉRIOS ---",
-      "Primeiro mistério doloroso: A Agonia de Jesus no Horto das Oliveiras",
-      "..."
+    "imagem": "",
+    "oracoes_iniciais": [
+      "Pelo sinal da Santa Cruz, livrai-nos, Deus nosso Senhor, dos nossos inimigos. Em nome do Pai, e do Filho, e do Espírito Santo. Amém.",
+      "Divino Jesus, eu Vos ofereço este terço que vou rezar, contemplando os mistérios da nossa redenção. Concedei-me, pela intercessão de Maria, Vossa Mãe Santíssima, a quem me dirijo, as virtudes que me são necessárias para bem rezá-lo e a graça de ganhar as indulgências anexas a esta devoção.",
+      "Ofereço este terço pela Santa Igreja, pelo Santo Papa, pela conversão dos pecadores, pelas almas do purgatório, e pela saúde, vida pessoal, profissional e financeira minha e de meu cônjuge.",
+      "Creio em Deus Pai todo-poderoso, criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à Mansão dos Mortos, ressuscitou ao terceiro dia; subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo; na Santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.",
+      "Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.",
+      "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 3 vezes (pelas virtudes da Fé, Esperança e Caridade)",
+      "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez"
+    ],
+    "misterios": [
+      { "slug": "dolorosos-1", "numero": "1º Mistério", "titulo": "A Agonia de Jesus no Horto das Oliveiras" },
+      { "slug": "dolorosos-2", "numero": "2º Mistério", "titulo": "A Flagelação de Nosso Senhor Jesus Cristo" },
+      { "slug": "dolorosos-3", "numero": "3º Mistério", "titulo": "A Coroação de Espinhos" },
+      { "slug": "dolorosos-4", "numero": "4º Mistério", "titulo": "Jesus Carregando a Cruz a Caminho do Calvário" },
+      { "slug": "dolorosos-5", "numero": "5º Mistério", "titulo": "A Crucificação e Morte de Jesus" }
     ]
+  },
+  "dolorosos-1": {
+    "titulo": "Primeiro Mistério Doloroso",
+    "subtitulo": "A Agonia de Jesus no Horto das Oliveiras.",
+    "imagem":"assets/images/dolorosos/1_misterio_DOLOROSO_Agonia_no_getsemani_Andrea_Mantegna.png",
+    "grupo": "dolorosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "dolorosos-2": {
+    "titulo": "Segundo Mistério Doloroso",
+    "subtitulo": "A Flagelação de Nosso Senhor Jesus Cristo atado à coluna.",
+    "imagem":"assets/images/dolorosos/2_misterio_doloroso_A Flagelacao de_Cristo_1607_Caravaggio.png",
+    "grupo": "dolorosos",
+    "oracoes":["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "dolorosos-3": {
+    "titulo": "Terceiro Mistério Doloroso",
+    "subtitulo": "A Coroação de Espinhos de Nosso Senhor.",
+    "imagem":"assets/images/dolorosos/3_misterio_doloroso_Cristo_Coroado_de_Espinhos_1542_Ticiano_Titian.png",
+    "grupo": "dolorosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "dolorosos-4": {
+    "titulo": "Quarto Mistério Doloroso",
+    "subtitulo": "Jesus carregando a Cruz a caminho do Calvário.",
+    "imagem":"assets/images/dolorosos/4_misterio_doloroso_cristo_carregando_a_cruz_el_greco_1580.png",
+    "grupo": "dolorosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "dolorosos-5": {
+    "titulo": "Quinto Mistério Doloroso",
+    "subtitulo": "A Crucificação e Morte de Jesus na Cruz.",
+    "imagem":"assets/images/dolorosos/5_misterio_DOLOROSO_jesus_na_cruz_entre_os_dois_ladroes_peter_paul_rubens.png",
+    "grupo": "dolorosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 10 vezes", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
   },
   "gloriosos": {
     "titulo": "MISTÉRIOS GLORIOSOS",
     "dias": "(Quartas, Sábados e Domingos)",
-    "imagem": "assets/images/gloriosos/1_misterio_glorioso_Rafael_Ressurreicao_de_Cristo_1499-1502.jpg",
-    "itens": [
-      "--- ORAÇÕES INICIAIS ---",
-      "Pelo sinal da Santa Cruz...",
-      "Divino Jesus...",
-      "Ofereço este terço...",
-      "Creio em Deus Pai...",
-      "Pai Nosso...",
-      "Ave Maria - 3 vezes",
-      "Glória ao Pai...",
-      "--- CONTEMPLAÇÕES DOS MISTÉRIOS ---",
-      "Primeiro mistério glorioso: A Ressurreição de Nosso Senhor Jesus Cristo",
-      "..."
+    "imagem": "",
+    "oracoes_iniciais": [
+      "Pelo sinal da Santa Cruz, livrai-nos, Deus nosso Senhor, dos nossos inimigos. Em nome do Pai, e do Filho, e do Espírito Santo. Amém.",
+      "Divino Jesus, eu Vos ofereço este terço que vou rezar, contemplando os mistérios da nossa redenção. Concedei-me, pela intercessão de Maria, Vossa Mãe Santíssima, a quem me dirijo, as virtudes que me são necessárias para bem rezá-lo e a graça de ganhar as indulgências anexas a esta devoção.",
+      "Ofereço este terço pela Santa Igreja, pelo Santo Papa, pela conversão dos pecadores, pelas almas do purgatório, e pela saúde, vida pessoal, profissional e financeira minha e de meu cônjuge.",
+      "Creio em Deus Pai todo-poderoso, criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à Mansão dos Mortos, ressuscitou ao terceiro dia; subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo; na Santa Igreja Católica; na comunhão dos santos; na remissão dos pecados; na ressurreição da carne; na vida eterna. Amém.",
+      "Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.",
+      "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém. - 3 vezes (pelas virtudes da Fé, Esperança e Caridade)",
+      "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém. - 1 vez"
+    ],
+    "misterios": [
+      { "slug": "gloriosos-1", "numero": "1º Mistério", "titulo": "A Ressurreição de Jesus" },
+      { "slug": "gloriosos-2", "numero": "2º Mistério", "titulo": "A Ascensão de Jesus ao Céu" },
+      { "slug": "gloriosos-3", "numero": "3º Mistério", "titulo": "A Vinda do Espírito Santo sobre os Apóstolos" },
+      { "slug": "gloriosos-4", "numero": "4º Mistério", "titulo": "A Assunção de Nossa Senhora ao Céu" },
+      { "slug": "gloriosos-5", "numero": "5º Mistério", "titulo": "A Coroação de Maria no Céu" }
     ]
+  },
+  "gloriosos-1": {
+    "titulo": "Primeiro Mistério Glorioso",
+    "subtitulo": "A Ressurreição de Nosso Senhor Jesus Cristo.",
+    "imagem":"assets/images/gloriosos/1_misterio_glorioso_Rafael_Ressurreicao_de_Cristo_1499-1502.jpg",
+    "grupo": "gloriosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gloriosos-2": {
+    "titulo": "Segundo Mistério Glorioso",
+    "subtitulo": "A Ascensão de Nosso Senhor aos Céus.",
+    "imagem":"assets/images/gloriosos/2_misterio_glorioso_benvenuto-tis_iascension-of-christ-1520.png",
+    "grupo": "gloriosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gloriosos-3": {
+    "titulo": "Terceiro Mistério Glorioso",
+    "subtitulo": "A Vinda do Espírito Santo sobre Nossa Senhora e os Apóstolos reunidos no Cenáculo.",
+    "imagem":"assets/images/gloriosos/3_misterio_glorioso_yov-kondzelevychthe-descent-of-the-holy-spirit.png",
+    "grupo": "gloriosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gloriosos-4": {
+    "titulo": "Quarto Mistério Glorioso",
+    "subtitulo": "A Assunção de Nossa Senhora em corpo e alma aos Céus.",
+    "imagem":"assets/images/gloriosos/4_misterio_glorioso_Assunção da Virgem Maria, Rubens, 1626.png",
+    "grupo": "gloriosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+  },
+  "gloriosos-5": {
+    "titulo": "Quinto Mistério Glorioso",
+    "subtitulo": "A Coroação de Nossa Senhora como Rainha do Céu e da Terra.",
+    "imagem":"assets/images/gloriosos/5_misterio_glorioso_fra_angelico_a_coroacao_da_virgem_maria.png",
+    "grupo": "gloriosos",
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
   }
 }

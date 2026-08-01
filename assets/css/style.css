@@ -254,6 +254,72 @@ hr {
 .btn_voltar:hover {
     color: #d4af37;
 }
+/* Estilização da lista de navegação */
+.nav_list {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Links do menu */
+.nav_item a {
+    display: flex;
+    flex-direction: column; /* Coloca os dias abaixo do nome */
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.nav_item a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Nome do mistério */
+.nome_misterio {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Dias da semana em destaque secundário */
+.dias_menu {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    margin-top: 2px;
+    font-weight: normal;
+}
+.divisor_finais {
+    margin: 30px 0 20px 0;
+    border: 0;
+    border-top: 2px dashed #cbd5e1;
+}
+
+.secao_oracoes_finais {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.card_oracao_final {
+    background-color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 4px solid #1e40af;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.sinal_cruz_final {
+    border-left-color: #15803d;
+    text-align: center;
+    font-weight: 500;
+}
 
 /* ==========================================================================
    FOOTER (Rodapé)
