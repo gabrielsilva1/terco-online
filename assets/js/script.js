@@ -33,21 +33,37 @@ function iniciarSite() {
         .catch(erro => console.error("Erro no carregamento:", erro));
 }
 
+// Helper para rolar a tela com precisão considerando o Header
+function rolarParaTopoDoConteudo() {
+    const targetElement = window.location.hash ? containerMisterio : containerInicial;
+    if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
 // 2. O ROTEADOR
 function roteador() {
-    window.scrollTo(0, 0);
     const paginaAtual = window.location.hash.replace('#', '');
 
     if (!paginaAtual) {
         containerInicial.style.display = "block";
         containerMisterio.style.display = "none";
         document.title = "Terço Online - História do Terço";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
+
+        // Reativa a animação de entrada CSS em cada troca de mistério
+        containerMisterio.style.animation = 'none';
+        containerMisterio.offsetHeight; // Força reflow do DOM
+        containerMisterio.style.animation = null;
+
         exibirMisterio(paginaAtual);
+        rolarParaTopoDoConteudo();
     }
 }
+
 // 3. EXIBE O MISTÉRIO SELECIONADO
 function exibirMisterio(chaveMisterio) {
     if (!dadosMisterios) return;
@@ -67,15 +83,19 @@ function exibirMisterio(chaveMisterio) {
             ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
             : '';
 
+        // Formatação das Orações Iniciais com ícone sutil
         const oracoesHTML = itemSelecionado.oracoes_iniciais
-            .map(oracao => `<li>${oracao}</li>`)
+            .map(oracao => `<li class="item_oracao_inicial"><span class="icone_oracao">┼</span> ${oracao}</li>`)
             .join('');
 
+        // Transformação dos links dos mistérios em Cards Interativos
         const linksMisteriosHTML = itemSelecionado.misterios
             .map(m => `
-                <li class="card_misterio_individual">
+                <li class="card_misterio_item">
                     <a href="#${m.slug}" class="btn_misterio_link">
-                        <strong>${m.numero}:</strong> ${m.titulo}
+                        <span class="badge_numero">${m.numero}º Mistério</span>
+                        <span class="titulo_misterio_card">${m.titulo}</span>
+                        <span class="seta_card">→</span>
                     </a>
                 </li>
             `)
@@ -86,14 +106,18 @@ function exibirMisterio(chaveMisterio) {
             <p class="dias_semana">${itemSelecionado.dias}</p>
             ${imagemHTML}
 
-            <h4>Orações Iniciais</h4>
-            <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
+            <div class="bloco_oracoes_iniciais">
+                <h4>Orações Iniciais</h4>
+                <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
+            </div>
 
-            <h4>Contemplação dos Mistérios</h4>
-            <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
+            <div class="bloco_contemplacoes">
+                <h4>Contemplação dos Mistérios</h4>
+                <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
+            </div>
 
             <br>
-            <a href="#" class="btn_voltar">← Voltar para a Página Inicial</a>
+            <a href="#" class="btn_navegacao btn_voltar">← Voltar para a Página Inicial</a>
         `;
     }
     // CASO B: Página de um mistério individual (ex: #gozosos-1, #dolorosos-5)
@@ -108,9 +132,8 @@ function exibirMisterio(chaveMisterio) {
                 if (oracao.toLowerCase().includes("ave maria")) {
                     return `
                         <li class="item_ave_maria_contador">
-                            <p class="texto_oracao_avemaria">
-                                <strong>Ave Maria</strong>, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.
-                            </p>
+                            Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.
+
                             <div class="painel_contador_inline">
                                 <span class="placar_avemaria">Rezadas: <strong id="valor_contador">0</strong> / 10</span>
                                 <button id="btn_contar_avemaria" class="btn_contar_inline">+1 Ave-Maria</button>
@@ -122,17 +145,29 @@ function exibirMisterio(chaveMisterio) {
             })
             .join('');
 
-        // Verifica se é o 5º mistério da série
-        const ehUltimoMisterio = chaveMisterio.endsWith('-5');
+        // Lógica de navegação entre mistérios
+        const [grupo, numeroString] = chaveMisterio.split('-');
+        const numeroAtual = parseInt(numeroString, 10);
+
+        let linkProximoHTML = '';
+        if (numeroAtual < 5) {
+            const proximoSlug = `${grupo}-${numeroAtual + 1}`;
+            linkProximoHTML = `<a href="#${proximoSlug}" class="btn_navegacao btn_proximo">Próximo Mistério →</a>`;
+        } else {
+            linkProximoHTML = `<a href="#${grupo}" class="btn_navegacao btn_proximo">Concluir Mistérios ✓</a>`;
+        }
+
+        const ehUltimoMisterio = numeroAtual === 5;
 
         const oracoesFinaisHTML = ehUltimoMisterio ? `
             <hr class="divisor_finais">
             <div class="secao_oracoes_finais">
-                <h4>Oração Final</h4>
+                <h4>Orações Finais do Terço</h4>
                 <ul class="lista_misterio">
                     <li class="card_oracao_final">
                         <p><strong>Salve Rainha</strong></p>
-                        <p>Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós voltai, e depois deste desterro mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Rogai por nós, Santa Mãe de Deus,para que sejamos dignos das promessas de Cristo. Amém.</p>
+                        <p>Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós voltai, e depois deste desterro mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria.</p>
+                        <p>Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.</p>
                     </li>
                     <li class="card_oracao_final sinal_cruz_final">
                         <p><strong>Sinal da Cruz Final ✝</strong></p>
@@ -152,8 +187,10 @@ function exibirMisterio(chaveMisterio) {
 
             ${oracoesFinaisHTML}
 
-            <br>
-            <a href="#${itemSelecionado.grupo}" class="btn_voltar">← Voltar para os ${itemSelecionado.grupo.toUpperCase()}</a>
+            <div class="painel_navegacao">
+                <a href="#${itemSelecionado.grupo}" class="btn_navegacao btn_voltar">← Voltar para os ${itemSelecionado.grupo.toUpperCase()}</a>
+                ${linkProximoHTML}
+            </div>
         `;
 
         // Lógica do contador da Ave-Maria
@@ -178,6 +215,7 @@ function exibirMisterio(chaveMisterio) {
         }
     }
 }
+
 // 4. ESCUTA OS EVENTOS DE INICIALIZAÇÃO E TROCA DE ROTA
 window.addEventListener("DOMContentLoaded", iniciarSite);
 window.addEventListener("hashchange", roteador);
