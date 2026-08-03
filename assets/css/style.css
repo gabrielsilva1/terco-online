@@ -20,10 +20,10 @@ images {
 }
 
 /* ==========================================================================
-   HEADER & NAVBAR (Unificados e Elegantes)
+   HEADER & NAVBAR (Unificados com #40CFFF)
    ========================================================================== */
 header {
-    background-color: #0b1d3a; /* Azul marinho profundo */
+    background-color: #40CFFF; /* Azul celeste */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
@@ -44,35 +44,52 @@ header #navbar .nav_brand a {
     font-size: 28px;
     font-weight: 700;
     text-decoration: none;
-    color: #ffffff;
+    color: #0f172a; /* Texto escuro para alto contraste no azul claro */
     letter-spacing: 1px;
 }
 
 header #navbar .nav_brand a:hover {
-    color: #d4af37; /* Dourado metálico */
+    color: #000000;
     transition: color 0.3s ease;
 }
 
-header #navbar .nav_list {
-    list-style: none;
+/* Estilização da lista de navegação */
+.nav_list {
     display: flex;
+    list-style: none;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Links do menu */
+.nav_item a {
+    display: flex;
+    flex-direction: column; /* Coloca os dias abaixo do nome */
     align-items: center;
-    gap: 1.5rem;
-}
-
-header #navbar .nav_list .nav_item a {
     text-decoration: none;
-    color: #e0e0e0;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    color: #0f172a; /* Texto escuro para leitura no fundo #40CFFF */
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
 }
 
-header #navbar .nav_list .nav_item a:hover {
-    color: #d4af37; /* Dourado */
-    background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil no hover */
+.nav_item a:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Nome do mistério */
+.nome_misterio {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Dias da semana em destaque secundário */
+.dias_menu {
+    font-size: 0.78rem;
+    color: #1e293b;
+    font-weight: normal;
+    margin-top: 2px;
 }
 
 /* Responsive para celulares */
@@ -94,19 +111,19 @@ header #navbar .nav_list .nav_item a:hover {
    ========================================================================== */
 main {
     background-color: #ffffff; /* Fundo branco apenas no bloco do texto */
-    max-width: 700px; /* Reduzido levemente para melhorar a linha de leitura */
+    max-width: 700px;
     margin: 40px auto;
     padding: 40px 35px;
-    border-radius: 12px; /* Bordas levemente arredondadas no bloco de texto */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Sombra suave ao redor do bloco */
-    line-height: 1.8; /* Mais espaçamento entre linhas */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    line-height: 1.8;
     text-align: justify;
 }
 
 /* Estilização dos títulos internos */
 main h2, main h3 {
     font-family: 'Times New Roman', Times, serif;
-    color: #0b1d3a;
+    color: #1e293b;
     text-align: center;
     margin-bottom: 20px;
     font-size: 28px;
@@ -114,15 +131,15 @@ main h2, main h3 {
 }
 
 main p {
-    margin-bottom: 18px; /* Espaço confortável entre parágrafos */
-    text-indent: 1.5em; /* Parágrafo tradicional de livro */
+    margin-bottom: 18px;
+    text-indent: 1.5em;
 }
 
 /* Estilo para a linha divisória */
 hr {
     border: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    background: linear-gradient(to right, transparent, #40CFFF, transparent);
     margin: 30px 0;
 }
 
@@ -130,7 +147,7 @@ hr {
    LISTA SEMÂNTICA DE MISTÉRIOS NA PÁGINA INICIAL
    ========================================================================== */
 .lista_misterios_inicio {
-    list-style: none; /* Remove as bolinhas da lista */
+    list-style: none;
     padding: 0;
     margin: 20px 0;
 }
@@ -138,7 +155,7 @@ hr {
 .lista_misterios_inicio li {
     background-color: #fcfbfa;
     border: 1px solid #e2ddcf;
-    border-left: 5px solid #0b1d3a;
+    border-left: 5px solid #40CFFF; /* Atualizado para #40CFFF */
     border-radius: 8px;
     padding: 18px 20px;
     margin-bottom: 18px;
@@ -149,13 +166,13 @@ hr {
 .lista_misterios_inicio li:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    border-left-color: #d4af37;
+    border-left-color: #00bfff;
 }
 
 .btn_misterio_card {
     display: inline-block;
-    background-color: #0b1d3a;
-    color: #ffffff !important;
+    background-color: #40CFFF; /* Atualizado para #40CFFF */
+    color: #0f172a !important; /* Texto escuro para contraste */
     text-decoration: none !important;
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
@@ -167,8 +184,8 @@ hr {
 }
 
 .btn_misterio_card:hover {
-    background-color: #d4af37;
-    color: #0b1d3a !important;
+    background-color: #2bbbe8;
+    color: #000000 !important;
 }
 
 .info_misterio_card {
@@ -180,7 +197,7 @@ hr {
 }
 
 .info_misterio_card strong {
-    color: #0b1d3a;
+    color: #0f172a;
 }
 
 /* ==========================================================================
@@ -189,7 +206,7 @@ hr {
 .images_misterio {
     width: 100%;
     max-height: 450px;
-    object-fit: contain; /* 'contain' impede que a arte sacra seja cortada */
+    object-fit: contain;
     background-color: #fcfcfc;
     border-radius: 8px;
     margin: 25px 0;
@@ -204,7 +221,7 @@ hr {
     font-size: 14px;
     margin-top: -15px;
     margin-bottom: 20px;
-    text-indent: 0; /* Tira o recuo do parágrafo */
+    text-indent: 0;
 }
 
 /* ==========================================================================
@@ -220,16 +237,15 @@ hr {
     padding: 15px 20px;
     margin-bottom: 12px;
     background-color: #fcfbfa;
-    border-left: 4px solid #0b1d3a; /* Linha lateral elegante */
+    border-left: 4px solid #40CFFF; /* Atualizado para #40CFFF */
     border-radius: 0 8px 8px 0;
     font-size: 17px;
     transition: transform 0.2s ease;
 }
 
-/* Efeito ao passar o mouse em cada oração da lista */
 .lista_misterio li:hover {
     transform: translateX(5px);
-    background-color: #f7f4ee;
+    background-color: #f0fbfd;
 }
 
 /* Mensagem de ajuda inicial */
@@ -245,57 +261,23 @@ hr {
     display: inline-block;
     margin-top: 25px;
     text-decoration: none;
-    color: #0b1d3a;
+    color: #0f172a;
     font-weight: bold;
     font-size: 15px;
     transition: color 0.3s;
 }
 
 .btn_voltar:hover {
-    color: #d4af37;
-}
-/* Estilização da lista de navegação */
-.nav_list {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-    padding: 0;
-    margin: 0;
+    color: #2bbbe8;
 }
 
-/* Links do menu */
-.nav_item a {
-    display: flex;
-    flex-direction: column; /* Coloca os dias abaixo do nome */
-    align-items: center;
-    text-decoration: none;
-    color: #ffffff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-}
-
-.nav_item a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Nome do mistério */
-.nome_misterio {
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-/* Dias da semana em destaque secundário */
-.dias_menu {
-    font-size: 0.78rem;
-    opacity: 0.85;
-    margin-top: 2px;
-    font-weight: normal;
-}
+/* ==========================================================================
+   ORAÇÕES FINAIS
+   ========================================================================== */
 .divisor_finais {
     margin: 30px 0 20px 0;
     border: 0;
-    border-top: 2px dashed #cbd5e1;
+    border-top: 2px dashed #40CFFF;
 }
 
 .secao_oracoes_finais {
@@ -310,7 +292,7 @@ hr {
     background-color: #ffffff;
     padding: 12px 16px;
     border-radius: 6px;
-    border-left: 4px solid #1e40af;
+    border-left: 4px solid #40CFFF; /* Atualizado para #40CFFF */
     margin-bottom: 12px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
@@ -325,16 +307,17 @@ hr {
    FOOTER (Rodapé)
    ========================================================================== */
 footer {
-    background-color: #0b1d3a;
+    background-color: #40CFFF;
     padding: 20px 0;
     margin-top: 60px;
 }
 
 footer .footer_item {
-    color: #ffffff;
+    color: #0f172a; /* Texto escuro para dar contraste no fundo azul claro */
     text-align: center;
     font-size: 14px;
     font-style: italic;
+    font-weight: 600;
     letter-spacing: 1px;
     text-indent: 0;
 }
