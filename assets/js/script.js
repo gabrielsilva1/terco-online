@@ -2,7 +2,7 @@ const containerInicial = document.getElementById('texto_oracao_inicial');
 const containerMisterio = document.getElementById('conteudo_misterio');
 let dadosMisterios = null;
 
-// 1. BUSCA OS DADOS NO JSON ASSIM QUE O SITE ABRE
+// 1. INICIALIZAÇÃO E CARREGAMENTO
 function iniciarSite() {
     fetch('assets/json/misterios.json')
         .then(resposta => {
@@ -13,7 +13,6 @@ function iniciarSite() {
             dadosMisterios = dados;
 
             const historia = dados.historia_terco;
-
             const imagemHTML = historia.imagem
                 ? `<img src="${historia.imagem}" alt="${historia.titulo}" class="images_misterio">`
                 : '';
@@ -27,21 +26,23 @@ function iniciarSite() {
             }).join('');
 
             containerInicial.innerHTML = `<h2>${historia.titulo}</h2>${imagemHTML}${paragrafosHTML}`;
-
             roteador();
         })
         .catch(erro => console.error("Erro no carregamento:", erro));
 }
 
-// Helper para rolar a tela com precisão considerando o Header
+// 2. ROLAGEM SUAVE COM DESCONTO DO HEADER FIXO
 function rolarParaTopoDoConteudo() {
-    const targetElement = window.location.hash ? containerMisterio : containerInicial;
-    if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
+
+    if (elementoAlvo) {
+        elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
-// 2. O ROTEADOR
+// 3. ROTEADOR
 function roteador() {
     const paginaAtual = window.location.hash.replace('#', '');
 
@@ -54,17 +55,17 @@ function roteador() {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
 
-        // Reativa a animação de entrada CSS em cada troca de mistério
-        containerMisterio.style.animation = 'none';
-        containerMisterio.offsetHeight; // Força reflow do DOM
-        containerMisterio.style.animation = null;
+        // Reinicia a animação de entrada a cada troca de rota
+        containerMisterio.classList.remove('animar_entrada');
+        void containerMisterio.offsetWidth; // Força reflow no navegador
+        containerMisterio.classList.add('animar_entrada');
 
         exibirMisterio(paginaAtual);
         rolarParaTopoDoConteudo();
     }
 }
 
-// 3. EXIBE O MISTÉRIO SELECIONADO
+// 4. EXIBE MISTÉRIO
 function exibirMisterio(chaveMisterio) {
     if (!dadosMisterios) return;
 
@@ -77,63 +78,85 @@ function exibirMisterio(chaveMisterio) {
 
     document.title = `Terço Online - ${itemSelecionado.titulo}`;
 
-    // CASO A: Página de um grupo principal (#gozosos, #dolorosos, #gloriosos)
+    // CASO A: Grupo Principal (#gozosos, #dolorosos, #gloriosos)
+// Substitua o mapeamento das orações no CASO A por este trecho:
     if (itemSelecionado.oracoes_iniciais) {
-        const imagemHTML = itemSelecionado.imagem
-            ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
-            : '';
+    const oracoesHTML = itemSelecionado.oracoes_iniciais
+        .map(oracao => `
+            <li class="item_oracao_inicial card_oracao_interativo">
+                <span class="icone_oracao">┼</span>
+                <span class="texto_oracao_item">${oracao}</span>
+            </li>
+        `)
+        .join('');
 
-        // Formatação das Orações Iniciais com ícone sutil
-        const oracoesHTML = itemSelecionado.oracoes_iniciais
-            .map(oracao => `<li class="item_oracao_inicial"><span class="icone_oracao">┼</span> ${oracao}</li>`)
-            .join('');
+    const linksMisteriosHTML = itemSelecionado.misterios
+        .map(m => `
+            <li class="card_misterio_item">
+                <a href="#${m.slug}" class="btn_misterio_link">
+                    <span class="badge_numero">${m.numero}º Mistério</span>
+                    <span class="titulo_misterio_card">${m.titulo}</span>
+                    <span class="seta_card">→</span>
+                </a>
+            </li>
+        `)
+        .join('');
 
-        // Transformação dos links dos mistérios em Cards Interativos
-        const linksMisteriosHTML = itemSelecionado.misterios
-            .map(m => `
-                <li class="card_misterio_item">
-                    <a href="#${m.slug}" class="btn_misterio_link">
-                        <span class="badge_numero">${m.numero}º Mistério</span>
-                        <span class="titulo_misterio_card">${m.titulo}</span>
-                        <span class="seta_card">→</span>
-                    </a>
-                </li>
-            `)
-            .join('');
+    const menuLateralHTML = itemSelecionado.misterios
+        .map(m => `
+            <li>
+                <a href="#${m.slug}" class="item_menu_lateral">
+                    <strong>${m.numero}º</strong> ${m.titulo}
+                </a>
+            </li>
+        `)
+        .join('');
 
-        containerMisterio.innerHTML = `
-            <h3>${itemSelecionado.titulo}</h3>
-            <p class="dias_semana">${itemSelecionado.dias}</p>
-            ${imagemHTML}
+    containerMisterio.innerHTML = `
+        <div class="layout_grupo_misterios">
+            <aside class="sidebar_misterios">
+                <h5 class="titulo_sidebar">Mistérios deste Grupo</h5>
+                <ul class="lista_sidebar">
+                    ${menuLateralHTML}
+                </ul>
+            </aside>
 
-            <div class="bloco_oracoes_iniciais">
-                <h4>Orações Iniciais</h4>
-                <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
+            <div class="conteudo_grupo_principal">
+                <!-- CABEÇALHO CLARO E LIMPO PARA O GRUPO -->
+                <div class="hero_grupo_card" id="imagem_topo_misterio">
+                    <span class="tag_grupo">Santo Terço</span>
+                    <h3>${itemSelecionado.titulo}</h3>
+                    <p class="dias_semana_grupo">📅 ${itemSelecionado.dias}</p>
+                </div>
+
+                <div class="bloco_oracoes_iniciais">
+                    <h4>Orações Iniciais</h4>
+                    <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
+                </div>
+
+                <div class="bloco_contemplacoes">
+                    <h4>Contemplação dos Mistérios</h4>
+                    <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
+                </div>
+
+                <br>
+                <a href="#" class="btn_navegacao btn_voltar">← Página Inicial</a>
             </div>
-
-            <div class="bloco_contemplacoes">
-                <h4>Contemplação dos Mistérios</h4>
-                <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
-            </div>
-
-            <br>
-            <a href="#" class="btn_navegacao btn_voltar">← Voltar para a Página Inicial</a>
-        `;
-    }
-    // CASO B: Página de um mistério individual (ex: #gozosos-1, #dolorosos-5)
+        </div>
+    `;
+}
+    // CASO B: Mistério Individual (ex: #gozosos-1, #dolorosos-5)
     else if (itemSelecionado.oracoes) {
         const imagemHTML = itemSelecionado.imagem
             ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
             : '';
 
-        // Orações do mistério + Contador de Ave-Maria
         const oracoesHTML = itemSelecionado.oracoes
             .map(oracao => {
                 if (oracao.toLowerCase().includes("ave maria")) {
                     return `
                         <li class="item_ave_maria_contador">
-                            Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.
-
+                            <p class="texto_avemaria">Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.</p>
                             <div class="painel_contador_inline">
                                 <span class="placar_avemaria">Rezadas: <strong id="valor_contador">0</strong> / 10</span>
                                 <button id="btn_contar_avemaria" class="btn_contar_inline">+1 Ave-Maria</button>
@@ -145,9 +168,16 @@ function exibirMisterio(chaveMisterio) {
             })
             .join('');
 
-        // Lógica de navegação entre mistérios
         const [grupo, numeroString] = chaveMisterio.split('-');
         const numeroAtual = parseInt(numeroString, 10);
+
+        let linkAnteriorHTML = '';
+        if (numeroAtual > 1) {
+            const anteriorSlug = `${grupo}-${numeroAtual - 1}`;
+            linkAnteriorHTML = `<a href="#${anteriorSlug}" class="btn_navegacao btn_voltar">← ${numeroAtual - 1}º Mistério</a>`;
+        } else {
+            linkAnteriorHTML = `<a href="#${grupo}" class="btn_navegacao btn_voltar">← Menu dos ${grupo.toUpperCase()}</a>`;
+        }
 
         let linkProximoHTML = '';
         if (numeroAtual < 5) {
@@ -158,7 +188,6 @@ function exibirMisterio(chaveMisterio) {
         }
 
         const ehUltimoMisterio = numeroAtual === 5;
-
         const oracoesFinaisHTML = ehUltimoMisterio ? `
             <hr class="divisor_finais">
             <div class="secao_oracoes_finais">
@@ -177,20 +206,32 @@ function exibirMisterio(chaveMisterio) {
             </div>
         ` : '';
 
+        const painelNavegacaoHTML = `
+            <div class="painel_navegacao">
+                ${linkAnteriorHTML}
+                <span class="indicador_progresso">${numeroAtual} de 5</span>
+                ${linkProximoHTML}
+            </div>
+        `;
+
         containerMisterio.innerHTML = `
-            <h3>${itemSelecionado.titulo}</h3>
-            <p class="subtitulo_misterio">${itemSelecionado.subtitulo}</p>
-            ${imagemHTML}
+            ${painelNavegacaoHTML}
+
+            <div class="hero_misterio_banner" id="imagem_topo_misterio">
+                ${imagemHTML}
+                <div class="overlay_hero_texto">
+                    <span class="badge_grupo_misterio">${grupo.toUpperCase()}</span>
+                    <h3>${itemSelecionado.titulo}</h3>
+                    <p class="subtitulo_misterio_banner">${itemSelecionado.subtitulo}</p>
+                </div>
+            </div>
 
             <h4>Orações do Mistério</h4>
             <ul class="lista_misterio">${oracoesHTML}</ul>
 
             ${oracoesFinaisHTML}
 
-            <div class="painel_navegacao">
-                <a href="#${itemSelecionado.grupo}" class="btn_navegacao btn_voltar">← Voltar para os ${itemSelecionado.grupo.toUpperCase()}</a>
-                ${linkProximoHTML}
-            </div>
+            ${painelNavegacaoHTML}
         `;
 
         // Lógica do contador da Ave-Maria
@@ -216,6 +257,6 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 4. ESCUTA OS EVENTOS DE INICIALIZAÇÃO E TROCA DE ROTA
+// 5. EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", iniciarSite);
 window.addEventListener("hashchange", roteador);
