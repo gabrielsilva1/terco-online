@@ -55,18 +55,29 @@ function atualizarMenuAtivo(paginaAtual) {
     });
 }
 
-// 3. ROLAGEM SUAVE COM OFFSET DO HEADER FIXO
+// 3. ROLAGEM ROBUSTA PARA MOBILE E DESKTOP
 function rolarParaTopoDoConteudo() {
-    const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
+    // Timeout duplo garante que o layout do smartphone estabilizou antes de rolar
+    setTimeout(() => {
+        const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
 
-    if (elementoAlvo) {
-        elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        if (elementoAlvo) {
+            elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 50);
 }
 
-// 4. ROTEADOR NAVEGACIONAL (SPA) - CORRIGIDO
+function rolarParaTopoAbsoluto() {
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    }, 50);
+}
+
+// 4. ROTEADOR NAVEGACIONAL (SPA)
 function roteador() {
     const paginaAtual = window.location.hash.replace('#', '');
     atualizarMenuAtivo(paginaAtual);
@@ -76,14 +87,7 @@ function roteador() {
         containerMisterio.style.display = "none";
         document.title = "Terço Online - História do Terço";
 
-        // Garante que o scroll vá para o topo (0,0) APÓS o ciclo de renderização do DOM
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
-            });
-        });
+        rolarParaTopoAbsoluto();
     } else {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
@@ -93,10 +97,7 @@ function roteador() {
         containerMisterio.classList.add('animar_entrada');
 
         exibirMisterio(paginaAtual);
-
-        requestAnimationFrame(() => {
-            rolarParaTopoDoConteudo();
-        });
+        rolarParaTopoDoConteudo();
     }
 }
 
@@ -310,6 +311,21 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 6. EVENT LISTENERS
+// 6. INTERCEPTADOR GLOBAL DE CLIQUES (Garante comportamento idêntico em celulares e notebooks)
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link && link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
+        e.preventDefault(); // Impede o salto bruto padrão do mobile
+        const destinoHash = link.getAttribute('href');
+
+        if (window.location.hash !== destinoHash) {
+            window.location.hash = destinoHash; // Aciona o hashchange de forma controlada
+        } else {
+            roteador(); // Força a rota caso já estivesse no mesmo hash
+        }
+    }
+});
+
+// 7. EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", iniciarSite);
 window.addEventListener("hashchange", roteador);
