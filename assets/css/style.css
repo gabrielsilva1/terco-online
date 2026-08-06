@@ -15,6 +15,7 @@ body {
     background-color: #f7f5f0;
     font-family: 'Georgia', Times, serif;
     color: #2b2b2b;
+    transition: background-color 0.4s ease;
 }
 
 img {
@@ -43,7 +44,6 @@ header #navbar {
     margin: 0 auto;
 }
 
-/* Base do botão do logotipo */
 header #navbar .nav_brand a {
     display: inline-flex;
     align-items: center;
@@ -64,7 +64,6 @@ header #navbar .nav_brand a:hover {
     transform: translateY(-1px);
 }
 
-/* Container da palavra "Terço" com encadeamento de contas */
 .encadeado_terco {
     display: inline-flex;
     align-items: center;
@@ -75,7 +74,6 @@ header #navbar .nav_brand a:hover {
     border: 1px solid rgba(246, 224, 149, 0.25);
 }
 
-/* Crucifixo Dourado Destacado */
 .cruz_logo {
     color: #f6e095;
     font-size: 16px;
@@ -85,7 +83,6 @@ header #navbar .nav_brand a:hover {
     text-shadow: 0 0 5px rgba(246, 224, 149, 0.6);
 }
 
-/* Contas (Bolinhas 3D com ponto de iluminação) */
 .conta_terco {
     display: inline-block;
     width: 6px;
@@ -95,7 +92,6 @@ header #navbar .nav_brand a:hover {
     box-shadow: 0 0 4px rgba(246, 224, 149, 0.6);
 }
 
-/* Parte 1: "Terço" */
 .logo_terco {
     font-family: 'Cinzel', 'Georgia', serif;
     font-size: 22px;
@@ -107,7 +103,6 @@ header #navbar .nav_brand a:hover {
     margin: 0 2px;
 }
 
-/* Parte 2: "Online" */
 .logo_online {
     font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
     font-size: 20px;
@@ -128,7 +123,7 @@ header #navbar .nav_brand a:hover {
     box-shadow: 0 0 6px #40CFFF;
 }
 
-/* Links do Menu de Navegação */
+/* Links do Menu de Navegação & Estado Ativo */
 .nav_list {
     display: flex;
     list-style: none;
@@ -156,6 +151,13 @@ header #navbar .nav_brand a:hover {
     border-top-color: #d4af37;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav_item a.active {
+    background-color: #ffffff;
+    border-top-color: #d4af37;
+    border-bottom: 3px solid #d4af37;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .nome_misterio {
@@ -287,9 +289,7 @@ hr {
     text-indent: 0 !important;
 }
 
-/* ==========================================================================
-   4.1 CABEÇALHO CLARO PARA GRUPOS (Sem fundo escuro)
-   ========================================================================== */
+/* Cabecalho Claro para os Grupos */
 .hero_grupo_card {
     background-color: #f0fbfd;
     border: 1px solid #bcebfb;
@@ -373,7 +373,7 @@ hr {
 }
 
 /* ==========================================================================
-   6. CARDS DE MISTÉRIOS & ORAÇÕES INICIAIS
+   6. CARDS DE MISTÉRIOS & ORAÇÕES INICIAIS (Accordion Reativo)
    ========================================================================== */
 .bloco_oracoes_iniciais {
     background-color: #f8fafc;
@@ -389,7 +389,6 @@ hr {
     margin-top: 15px;
 }
 
-/* Base dos cartões de orações iniciais com cursor interativo */
 .item_oracao_inicial {
     background-color: #ffffff;
     padding: 14px 18px;
@@ -399,13 +398,12 @@ hr {
     font-size: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
-    cursor: pointer; /* Indica ao usuário que o elemento é interativo */
+    cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Efeito ao passar o mouse (Hover) */
 .item_oracao_inicial:hover {
     background-color: #f0fbfd;
     border-left-color: #0b1d3a;
@@ -417,10 +415,10 @@ hr {
     color: #40CFFF;
     font-size: 15px;
     font-weight: bold;
+    margin-top: 2px;
     transition: color 0.25s ease, transform 0.25s ease;
 }
 
-/* Animação do ícone de cruz ao passar o mouse */
 .item_oracao_inicial:hover .icone_oracao {
     color: #0b1d3a;
     transform: scale(1.25);
@@ -429,6 +427,7 @@ hr {
 .texto_oracao_item {
     color: #1e293b;
     font-weight: 500;
+    line-height: 1.6;
 }
 
 .bloco_contemplacoes {
@@ -495,7 +494,7 @@ hr {
 }
 
 /* ==========================================================================
-   7. LISTA DE ORAÇÕES, CONTADOR & PAINEL DE NAVEGAÇÃO
+   7. CONTADOR VISUAL DE AVE-MARIAS (Com 10 Contas 3D)
    ========================================================================== */
 .lista_misterio {
     list-style: none;
@@ -521,11 +520,11 @@ hr {
 .item_ave_maria_contador {
     background-color: #f0fbfd !important;
     border-left: 4px solid #00bfff !important;
-    padding: 18px 20px !important;
+    padding: 20px !important;
 }
 
 .texto_avemaria {
-    margin-bottom: 12px !important;
+    margin-bottom: 15px !important;
     text-indent: 0 !important;
     font-size: 16px;
     line-height: 1.6;
@@ -533,14 +532,19 @@ hr {
 
 .painel_contador_inline {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
     background-color: #ffffff;
     border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-top: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.topo_contador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .placar_avemaria {
@@ -558,7 +562,7 @@ hr {
     background-color: #40CFFF;
     color: #0f172a;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 6px;
     font-weight: bold;
     font-size: 14px;
@@ -575,6 +579,32 @@ hr {
     transform: scale(0.97);
 }
 
+/* Esferas de progresso da dezena */
+.regua_contas_terco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4px 2px 4px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.conta_bolinha_dezena {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    border: 1px solid #94a3b8;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.conta_bolinha_dezena.rezada {
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f6e095 50%, #d4af37 100%);
+    border-color: #b8860b;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+    transform: scale(1.2);
+}
+
+/* Painel de Navegação entre Mistérios */
 .painel_navegacao {
     display: flex;
     justify-content: space-between;
@@ -719,7 +749,7 @@ footer .footer_item {
         font-size: 20px !important;
     }
 
-    .painel_contador_inline {
+    .topo_contador {
         flex-direction: column;
         gap: 10px;
         text-align: center;
@@ -728,4 +758,33 @@ footer .footer_item {
     .btn_contar_inline {
         width: 100%;
     }
+}
+/* ==========================================================================
+   FORMATAÇÃO DA IMAGEM DA PÁGINA INICIAL (História)
+   ========================================================================== */
+.container_imagem_historia {
+    margin: 25px auto 35px auto;
+    text-align: center;
+    max-width: 650px;
+    background-color: #fcfbfa;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.imagem_historia_destaque {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Borda dourada sutil */
+}
+
+.legenda_imagem_historia {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #64748b;
 }

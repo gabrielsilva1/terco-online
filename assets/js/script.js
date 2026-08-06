@@ -14,7 +14,11 @@ function iniciarSite() {
 
             const historia = dados.historia_terco;
             const imagemHTML = historia.imagem
-                ? `<img src="${historia.imagem}" alt="${historia.titulo}" class="images_misterio">`
+                ? `<div class="container_imagem_historia">
+                <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
+                <span class="legenda_imagem_historia">Nossa Senhora entregando o Santo Rosário a São Domingos de Gusmão</span>
+                </div>
+                `
                 : '';
 
             const paragrafosHTML = historia.paragrafos.map(p => {
@@ -31,7 +35,20 @@ function iniciarSite() {
         .catch(erro => console.error("Erro no carregamento:", erro));
 }
 
-// 2. ROLAGEM SUAVE COM DESCONTO DO HEADER FIXO
+// 2. ATUALIZA ESTADO ATIVO DO MENU
+function atualizarMenuAtivo(paginaAtual) {
+    const links = document.querySelectorAll('.nav_item a');
+    links.forEach(link => {
+        const misterioGrupo = link.getAttribute('data-misterio');
+        if (paginaAtual && paginaAtual.startsWith(misterioGrupo)) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// 3. ROLAGEM SUAVE COM OFFSET DO HEADER FIXO
 function rolarParaTopoDoConteudo() {
     const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
 
@@ -42,20 +59,23 @@ function rolarParaTopoDoConteudo() {
     }
 }
 
-// 3. ROTEADOR
+// 4. ROTEADOR NAVEGACIONAL (SPA) - Corrigido
 function roteador() {
     const paginaAtual = window.location.hash.replace('#', '');
+    atualizarMenuAtivo(paginaAtual);
 
     if (!paginaAtual) {
+        // Exibe a tela inicial e esconde o contêiner de mistérios
         containerInicial.style.display = "block";
         containerMisterio.style.display = "none";
         document.title = "Terço Online - História do Terço";
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Força o scroll para o topo absoluto (0,0) imediatamente
+        window.scrollTo(0, 0);
     } else {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
 
-        // Reinicia a animação de entrada a cada troca de rota
         containerMisterio.classList.remove('animar_entrada');
         void containerMisterio.offsetWidth; // Força reflow no navegador
         containerMisterio.classList.add('animar_entrada');
@@ -65,7 +85,7 @@ function roteador() {
     }
 }
 
-// 4. EXIBE MISTÉRIO
+// 5. RENDERIZADOR DE CONTEÚDO
 function exibirMisterio(chaveMisterio) {
     if (!dadosMisterios) return;
 
@@ -79,77 +99,81 @@ function exibirMisterio(chaveMisterio) {
     document.title = `Terço Online - ${itemSelecionado.titulo}`;
 
     // CASO A: Grupo Principal (#gozosos, #dolorosos, #gloriosos)
-// Substitua o mapeamento das orações no CASO A por este trecho:
     if (itemSelecionado.oracoes_iniciais) {
-    const oracoesHTML = itemSelecionado.oracoes_iniciais
-        .map(oracao => `
-            <li class="item_oracao_inicial card_oracao_interativo">
-                <span class="icone_oracao">┼</span>
-                <span class="texto_oracao_item">${oracao}</span>
-            </li>
-        `)
-        .join('');
+        const oracoesHTML = itemSelecionado.oracoes_iniciais
+            .map(oracao => `
+                <li class="item_oracao_inicial card_oracao_interativo">
+                    <span class="icone_oracao">┼</span>
+                    <span class="texto_oracao_item">${oracao}</span>
+                </li>
+            `)
+            .join('');
 
-    const linksMisteriosHTML = itemSelecionado.misterios
-        .map(m => `
-            <li class="card_misterio_item">
-                <a href="#${m.slug}" class="btn_misterio_link">
-                    <span class="badge_numero">${m.numero}º Mistério</span>
-                    <span class="titulo_misterio_card">${m.titulo}</span>
-                    <span class="seta_card">→</span>
-                </a>
-            </li>
-        `)
-        .join('');
+        const linksMisteriosHTML = itemSelecionado.misterios
+            .map(m => `
+                <li class="card_misterio_item">
+                    <a href="#${m.slug}" class="btn_misterio_link">
+                        <span class="badge_numero">${m.numero}º Mistério</span>
+                        <span class="titulo_misterio_card">${m.titulo}</span>
+                        <span class="seta_card">→</span>
+                    </a>
+                </li>
+            `)
+            .join('');
 
-    const menuLateralHTML = itemSelecionado.misterios
-        .map(m => `
-            <li>
-                <a href="#${m.slug}" class="item_menu_lateral">
-                    <strong>${m.numero}º</strong> ${m.titulo}
-                </a>
-            </li>
-        `)
-        .join('');
+        const menuLateralHTML = itemSelecionado.misterios
+            .map(m => `
+                <li>
+                    <a href="#${m.slug}" class="item_menu_lateral">
+                        <strong>${m.numero}º</strong> ${m.titulo}
+                    </a>
+                </li>
+            `)
+            .join('');
 
-    containerMisterio.innerHTML = `
-        <div class="layout_grupo_misterios">
-            <aside class="sidebar_misterios">
-                <h5 class="titulo_sidebar">Mistérios deste Grupo</h5>
-                <ul class="lista_sidebar">
-                    ${menuLateralHTML}
-                </ul>
-            </aside>
+        containerMisterio.innerHTML = `
+            <div class="layout_grupo_misterios">
+                <aside class="sidebar_misterios">
+                    <h5 class="titulo_sidebar">Mistérios deste Grupo</h5>
+                    <ul class="lista_sidebar">
+                        ${menuLateralHTML}
+                    </ul>
+                </aside>
 
-            <div class="conteudo_grupo_principal">
-                <!-- CABEÇALHO CLARO E LIMPO PARA O GRUPO -->
-                <div class="hero_grupo_card" id="imagem_topo_misterio">
-                    <span class="tag_grupo">Santo Terço</span>
-                    <h3>${itemSelecionado.titulo}</h3>
-                    <p class="dias_semana_grupo">📅 ${itemSelecionado.dias}</p>
+                <div class="conteudo_grupo_principal">
+                    <div class="hero_grupo_card" id="imagem_topo_misterio">
+                        <span class="tag_grupo">Santo Terço</span>
+                        <h3>${itemSelecionado.titulo}</h3>
+                        <p class="dias_semana_grupo">📅 ${itemSelecionado.dias}</p>
+                    </div>
+
+                    <div class="bloco_oracoes_iniciais">
+                        <h4>Orações Iniciais</h4>
+                        <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
+                    </div>
+
+                    <div class="bloco_contemplacoes">
+                        <h4>Contemplação dos Mistérios</h4>
+                        <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
+                    </div>
+
+                    <br>
+                    <a href="#" class="btn_navegacao btn_voltar">← Página Inicial</a>
                 </div>
-
-                <div class="bloco_oracoes_iniciais">
-                    <h4>Orações Iniciais</h4>
-                    <ul class="lista_misterio_iniciais">${oracoesHTML}</ul>
-                </div>
-
-                <div class="bloco_contemplacoes">
-                    <h4>Contemplação dos Mistérios</h4>
-                    <ul class="lista_misterios_links">${linksMisteriosHTML}</ul>
-                </div>
-
-                <br>
-                <a href="#" class="btn_navegacao btn_voltar">← Página Inicial</a>
             </div>
-        </div>
-    `;
-}
+        `;
+    }
     // CASO B: Mistério Individual (ex: #gozosos-1, #dolorosos-5)
     else if (itemSelecionado.oracoes) {
         const imagemHTML = itemSelecionado.imagem
             ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
             : '';
+
+        // Gera as 10 esferas do terço em CSS
+        let bolinhasDezenaHTML = '';
+        for (let i = 1; i <= 10; i++) {
+            bolinhasDezenaHTML += `<span class="conta_bolinha_dezena" id="bolinha_conta_${i}"></span>`;
+        }
 
         const oracoesHTML = itemSelecionado.oracoes
             .map(oracao => {
@@ -158,8 +182,13 @@ function exibirMisterio(chaveMisterio) {
                         <li class="item_ave_maria_contador">
                             <p class="texto_avemaria">Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.</p>
                             <div class="painel_contador_inline">
-                                <span class="placar_avemaria">Rezadas: <strong id="valor_contador">0</strong> / 10</span>
-                                <button id="btn_contar_avemaria" class="btn_contar_inline">+1 Ave-Maria</button>
+                                <div class="topo_contador">
+                                    <span class="placar_avemaria">Rezadas: <strong id="valor_contador">0</strong> / 10</span>
+                                    <button id="btn_contar_avemaria" class="btn_contar_inline">+1 Ave-Maria</button>
+                                </div>
+                                <div class="regua_contas_terco">
+                                    ${bolinhasDezenaHTML}
+                                </div>
                             </div>
                         </li>
                     `;
@@ -234,7 +263,7 @@ function exibirMisterio(chaveMisterio) {
             ${painelNavegacaoHTML}
         `;
 
-        // Lógica do contador da Ave-Maria
+        // Lógica do contador da Ave-Maria comiluminação de contas
         let contagem = 0;
         const btnContar = document.getElementById('btn_contar_avemaria');
         const visorContador = document.getElementById('valor_contador');
@@ -244,6 +273,12 @@ function exibirMisterio(chaveMisterio) {
                 if (contagem < 10) {
                     contagem++;
                     visorContador.innerText = contagem;
+
+                    // Acende a conta correspondente
+                    const contaAtual = document.getElementById(`bolinha_conta_${contagem}`);
+                    if (contaAtual) {
+                        contaAtual.classList.add('rezada');
+                    }
 
                     if (contagem === 10) {
                         btnContar.innerText = "Concluído ✓";
@@ -257,6 +292,6 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 5. EVENT LISTENERS
+// 6. EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", iniciarSite);
 window.addEventListener("hashchange", roteador);

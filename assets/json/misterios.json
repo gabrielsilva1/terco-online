@@ -73,7 +73,7 @@
     "grupo": "gozosos",
     "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
   },
-    "dolorosos": {
+  "dolorosos": {
     "titulo": "MISTÉRIOS DOLOROSOS",
     "dias": "(Terças e Sextas)",
     "imagem": "",
@@ -127,7 +127,7 @@
     "subtitulo": "A Crucificação e Morte de Jesus na Cruz.",
     "imagem":"assets/images/dolorosos/5_misterio_DOLOROSO_jesus_na_cruz_entre_os_dois_ladroes_peter_paul_rubens.png",
     "grupo": "dolorosos",
-    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalmente, as que mais precisarem da Vossa misericórdia."]
+    "oracoes": ["Pai Nosso que estais nos céus, santificado seja o Vosso nome, venha a nós o Vosso reino, seja feita a Vossa vontade, assim na terra como no céu. O pão nosso de cada dia, nos dai hoje. Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido. E não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.", "Ave Maria, cheia de graça, o senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do Vosso ventre, Jesus. Santa Maria, mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.", "Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre. Amém.", "Ó meu Jesus, perdoai-nos os nossos pecados, salvai-nos do fogo do inferno. Levai as almas todas para o Céu, e socorrei, principalement, as que mais precisarem da Vossa misericórdia."]
   },
   "gloriosos": {
     "titulo": "MISTÉRIOS GLORIOSOS",
