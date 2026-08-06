@@ -1,6 +1,14 @@
+// Desativa a restauração automática de rolagem nativa dos navegadores
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
 const containerInicial = document.getElementById('texto_oracao_inicial');
 const containerMisterio = document.getElementById('conteudo_misterio');
 let dadosMisterios = null;
+
+// Objeto para persistir a contagem da dezena enquanto o usuário navega
+const progressoDezenas = {};
 
 // 1. INICIALIZAÇÃO E CARREGAMENTO
 function iniciarSite() {
@@ -15,10 +23,9 @@ function iniciarSite() {
             const historia = dados.historia_terco;
             const imagemHTML = historia.imagem
                 ? `<div class="container_imagem_historia">
-                <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
-                <span class="legenda_imagem_historia">Nossa Senhora entregando o Santo Rosário a São Domingos de Gusmão</span>
-                </div>
-                `
+                    <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
+                    <span class="legenda_imagem_historia">Nossa Senhora entregando o Santo Rosário a São Domingos de Gusmão</span>
+                   </div>`
                 : '';
 
             const paragrafosHTML = historia.paragrafos.map(p => {
@@ -59,19 +66,24 @@ function rolarParaTopoDoConteudo() {
     }
 }
 
-// 4. ROTEADOR NAVEGACIONAL (SPA) - Corrigido
+// 4. ROTEADOR NAVEGACIONAL (SPA) - CORRIGIDO
 function roteador() {
     const paginaAtual = window.location.hash.replace('#', '');
     atualizarMenuAtivo(paginaAtual);
 
-    if (!paginaAtual) {
-        // Exibe a tela inicial e esconde o contêiner de mistérios
+    if (!paginaAtual || paginaAtual === 'inicio') {
         containerInicial.style.display = "block";
         containerMisterio.style.display = "none";
         document.title = "Terço Online - História do Terço";
 
-        // Força o scroll para o topo absoluto (0,0) imediatamente
-        window.scrollTo(0, 0);
+        // Garante que o scroll vá para o topo (0,0) APÓS o ciclo de renderização do DOM
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            });
+        });
     } else {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
@@ -81,7 +93,10 @@ function roteador() {
         containerMisterio.classList.add('animar_entrada');
 
         exibirMisterio(paginaAtual);
-        rolarParaTopoDoConteudo();
+
+        requestAnimationFrame(() => {
+            rolarParaTopoDoConteudo();
+        });
     }
 }
 
@@ -169,22 +184,27 @@ function exibirMisterio(chaveMisterio) {
             ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
             : '';
 
-        // Gera as 10 esferas do terço em CSS
+        let contagem = progressoDezenas[chaveMisterio] || 0;
+
         let bolinhasDezenaHTML = '';
         for (let i = 1; i <= 10; i++) {
-            bolinhasDezenaHTML += `<span class="conta_bolinha_dezena" id="bolinha_conta_${i}"></span>`;
+            const ehRezada = i <= contagem ? 'rezada' : '';
+            bolinhasDezenaHTML += `<span class="conta_bolinha_dezena ${ehRezada}" id="bolinha_conta_${i}"></span>`;
         }
 
         const oracoesHTML = itemSelecionado.oracoes
             .map(oracao => {
                 if (oracao.toLowerCase().includes("ave maria")) {
+                    const textoBotao = contagem === 10 ? "Concluído ✓" : "+1 Ave-Maria";
+                    const estiloBotao = contagem === 10 ? 'style="background-color: #4CAF50; color: white;" disabled' : '';
+
                     return `
                         <li class="item_ave_maria_contador">
                             <p class="texto_avemaria">Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.</p>
                             <div class="painel_contador_inline">
                                 <div class="topo_contador">
-                                    <span class="placar_avemaria">Rezadas: <strong id="valor_contador">0</strong> / 10</span>
-                                    <button id="btn_contar_avemaria" class="btn_contar_inline">+1 Ave-Maria</button>
+                                    <span class="placar_avemaria">Rezadas: <strong id="valor_contador">${contagem}</strong> / 10</span>
+                                    <button id="btn_contar_avemaria" class="btn_contar_inline" ${estiloBotao}>${textoBotao}</button>
                                 </div>
                                 <div class="regua_contas_terco">
                                     ${bolinhasDezenaHTML}
@@ -263,8 +283,6 @@ function exibirMisterio(chaveMisterio) {
             ${painelNavegacaoHTML}
         `;
 
-        // Lógica do contador da Ave-Maria comiluminação de contas
-        let contagem = 0;
         const btnContar = document.getElementById('btn_contar_avemaria');
         const visorContador = document.getElementById('valor_contador');
 
@@ -272,9 +290,9 @@ function exibirMisterio(chaveMisterio) {
             btnContar.addEventListener('click', () => {
                 if (contagem < 10) {
                     contagem++;
+                    progressoDezenas[chaveMisterio] = contagem;
                     visorContador.innerText = contagem;
 
-                    // Acende a conta correspondente
                     const contaAtual = document.getElementById(`bolinha_conta_${contagem}`);
                     if (contaAtual) {
                         contaAtual.classList.add('rezada');
