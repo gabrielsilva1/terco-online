@@ -24,7 +24,7 @@ function iniciarSite() {
             const imagemHTML = historia.imagem
                 ? `<div class="container_imagem_historia">
                     <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
-                    <span class="legenda_imagem_historia">Nossa Senhora entregando o Santo Rosário a São Domingos de Gusmão</span>
+                    <span class="legenda_imagem_historia">Nossa Senhora entregou o Santo Rosário a São Domingos de Gusmão</span>
                    </div>`
                 : '';
 
