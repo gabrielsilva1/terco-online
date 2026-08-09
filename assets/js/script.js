@@ -129,7 +129,7 @@ function exibirMisterio(chaveMisterio) {
             .map(m => `
                 <li class="card_misterio_item">
                     <a href="#${m.slug}" class="btn_misterio_link">
-                        <span class="badge_numero">${m.numero}º Mistério</span>
+                        <span class="badge_numero">${m.numero}</span>
                         <span class="titulo_misterio_card">${m.titulo}</span>
                         <span class="seta_card">→</span>
                     </a>
@@ -141,7 +141,7 @@ function exibirMisterio(chaveMisterio) {
             .map(m => `
                 <li>
                     <a href="#${m.slug}" class="item_menu_lateral">
-                        <strong>${m.numero}º</strong> ${m.titulo}
+                        <strong>${m.numero}</strong> ${m.titulo}
                     </a>
                 </li>
             `)
