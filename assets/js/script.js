@@ -55,26 +55,29 @@ function atualizarMenuAtivo(paginaAtual) {
     });
 }
 
-// 3. ROLAGEM ROBUSTA PARA MOBILE E DESKTOP
+// 3. ROLAGEM ROBUSTA E OTIMIZADA PARA MOBILE (Aguarda o reflow do layout)
 function rolarParaTopoDoConteudo() {
-    // Timeout duplo garante que o layout do smartphone estabilizou antes de rolar
-    setTimeout(() => {
-        const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
 
-        if (elementoAlvo) {
-            elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }, 50);
+            if (elementoAlvo) {
+                elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }, 120); // Tempo seguro para o motor webkit/blink do mobile recalcular a tela
+    });
 }
 
 function rolarParaTopoAbsoluto() {
-    setTimeout(() => {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-    }, 50);
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }, 120);
+    });
 }
 
 // 4. ROTEADOR NAVEGACIONAL (SPA)
@@ -311,21 +314,6 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 6. INTERCEPTADOR GLOBAL DE CLIQUES (Garante comportamento idêntico em celulares e notebooks)
-document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (link && link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
-        e.preventDefault(); // Impede o salto bruto padrão do mobile
-        const destinoHash = link.getAttribute('href');
-
-        if (window.location.hash !== destinoHash) {
-            window.location.hash = destinoHash; // Aciona o hashchange de forma controlada
-        } else {
-            roteador(); // Força a rota caso já estivesse no mesmo hash
-        }
-    }
-});
-
-// 7. EVENT LISTENERS
+// 6. EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", iniciarSite);
 window.addEventListener("hashchange", roteador);
