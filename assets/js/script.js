@@ -1,4 +1,4 @@
-// Desativa a restauração automática de rolagem nativa dos navegadores
+// Desativa a restauração automática de rolagem nativa
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -7,7 +7,6 @@ const containerInicial = document.getElementById('texto_oracao_inicial');
 const containerMisterio = document.getElementById('conteudo_misterio');
 let dadosMisterios = null;
 
-// Objeto para persistir a contagem da dezena enquanto o usuário navega
 const progressoDezenas = {};
 
 // 1. INICIALIZAÇÃO E CARREGAMENTO
@@ -37,7 +36,9 @@ function iniciarSite() {
             }).join('');
 
             containerInicial.innerHTML = `<h2>${historia.titulo}</h2>${imagemHTML}${paragrafosHTML}`;
-            roteador();
+
+            const rotaInicial = window.location.hash.replace('#', '') || 'inicio';
+            navegarPara(rotaInicial, false);
         })
         .catch(erro => console.error("Erro no carregamento:", erro));
 }
@@ -47,7 +48,7 @@ function atualizarMenuAtivo(paginaAtual) {
     const links = document.querySelectorAll('.nav_item a');
     links.forEach(link => {
         const misterioGrupo = link.getAttribute('data-misterio');
-        if (paginaAtual && paginaAtual.startsWith(misterioGrupo)) {
+        if (paginaAtual && misterioGrupo && paginaAtual.startsWith(misterioGrupo)) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
@@ -55,53 +56,58 @@ function atualizarMenuAtivo(paginaAtual) {
     });
 }
 
-// 3. ROLAGEM ROBUSTA E OTIMIZADA PARA MOBILE (Aguarda o reflow do layout)
-function rolarParaTopoDoConteudo() {
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            const elementoAlvo = document.getElementById('imagem_topo_misterio') || document.querySelector('#conteudo_misterio h3') || document.querySelector('main');
+// 3. ROLAGEM UNIVERSAL (Compatível com Firefox Mobile, Chrome, Safari e Samsung)
+function resetarScrollUniversal() {
+    // Remove o foco do clique para o celular não tentar prender a viewport no botão
+    if (document.activeElement && document.activeElement !== document.body) {
+        document.activeElement.blur();
+    }
 
-            if (elementoAlvo) {
-                elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }, 120); // Tempo seguro para o motor webkit/blink do mobile recalcular a tela
-    });
+    // Força o corte seco ignorando qualquer 'scroll-behavior: smooth' do CSS
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    // Dispara a rolagem no topo em todas as referências possíveis de navegação
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 }
 
-function rolarParaTopoAbsoluto() {
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        }, 120);
-    });
-}
+// 4. CONTROLADOR CENTRAL DE NAVEGAÇÃO
+function navegarPara(rota, atualizarHistorico = true) {
+    const paginaAtual = rota || 'inicio';
 
-// 4. ROTEADOR NAVEGACIONAL (SPA)
-function roteador() {
-    const paginaAtual = window.location.hash.replace('#', '');
+    // PASSO 1: Zera a posição ANTES de alterar a exibição do DOM.
+    resetarScrollUniversal();
+
+    if (atualizarHistorico) {
+        history.pushState(null, '', `#${paginaAtual}`);
+    }
+
     atualizarMenuAtivo(paginaAtual);
 
-    if (!paginaAtual || paginaAtual === 'inicio') {
+    if (paginaAtual === 'inicio' || paginaAtual === '') {
         containerInicial.style.display = "block";
         containerMisterio.style.display = "none";
         document.title = "Terço Online - História do Terço";
-
-        rolarParaTopoAbsoluto();
     } else {
         containerInicial.style.display = "none";
         containerMisterio.style.display = "block";
 
         containerMisterio.classList.remove('animar_entrada');
-        void containerMisterio.offsetWidth; // Força reflow no navegador
+        void containerMisterio.offsetWidth;
         containerMisterio.classList.add('animar_entrada');
 
         exibirMisterio(paginaAtual);
-        rolarParaTopoDoConteudo();
     }
+
+    // PASSO 2: Zera o scroll IMEDIATAMENTE APÓS a montagem do novo HTML
+    resetarScrollUniversal();
+
+    // PASSO 3: Confirmação final após a renderização do layout e carregamento das imagens
+    setTimeout(() => {
+        resetarScrollUniversal();
+        document.documentElement.style.scrollBehavior = ''; // Restaura estilo original do CSS
+    }, 80);
 }
 
 // 5. RENDERIZADOR DE CONTEÚDO
@@ -131,7 +137,7 @@ function exibirMisterio(chaveMisterio) {
         const linksMisteriosHTML = itemSelecionado.misterios
             .map(m => `
                 <li class="card_misterio_item">
-                    <a href="#${m.slug}" class="btn_misterio_link">
+                    <a href="#" data-route="${m.slug}" class="btn_misterio_link">
                         <span class="badge_numero">${m.numero}</span>
                         <span class="titulo_misterio_card">${m.titulo}</span>
                         <span class="seta_card">→</span>
@@ -143,7 +149,7 @@ function exibirMisterio(chaveMisterio) {
         const menuLateralHTML = itemSelecionado.misterios
             .map(m => `
                 <li>
-                    <a href="#${m.slug}" class="item_menu_lateral">
+                    <a href="#" data-route="${m.slug}" class="item_menu_lateral">
                         <strong>${m.numero}</strong> ${m.titulo}
                     </a>
                 </li>
@@ -177,12 +183,12 @@ function exibirMisterio(chaveMisterio) {
                     </div>
 
                     <br>
-                    <a href="#" class="btn_navegacao btn_voltar">← Página Inicial</a>
+                    <a href="#" data-route="inicio" class="btn_navegacao btn_voltar">← Página Inicial</a>
                 </div>
             </div>
         `;
     }
-    // CASO B: Mistério Individual (ex: #gozosos-1, #dolorosos-5)
+    // CASO B: Mistério Individual
     else if (itemSelecionado.oracoes) {
         const imagemHTML = itemSelecionado.imagem
             ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
@@ -227,17 +233,17 @@ function exibirMisterio(chaveMisterio) {
         let linkAnteriorHTML = '';
         if (numeroAtual > 1) {
             const anteriorSlug = `${grupo}-${numeroAtual - 1}`;
-            linkAnteriorHTML = `<a href="#${anteriorSlug}" class="btn_navegacao btn_voltar">← ${numeroAtual - 1}º Mistério</a>`;
+            linkAnteriorHTML = `<a href="#" data-route="${anteriorSlug}" class="btn_navegacao btn_voltar">← ${numeroAtual - 1}º Mistério</a>`;
         } else {
-            linkAnteriorHTML = `<a href="#${grupo}" class="btn_navegacao btn_voltar">← Menu dos ${grupo.toUpperCase()}</a>`;
+            linkAnteriorHTML = `<a href="#" data-route="${grupo}" class="btn_navegacao btn_voltar">← Menu dos ${grupo.toUpperCase()}</a>`;
         }
 
         let linkProximoHTML = '';
         if (numeroAtual < 5) {
             const proximoSlug = `${grupo}-${numeroAtual + 1}`;
-            linkProximoHTML = `<a href="#${proximoSlug}" class="btn_navegacao btn_proximo">Próximo Mistério →</a>`;
+            linkProximoHTML = `<a href="#" data-route="${proximoSlug}" class="btn_navegacao btn_proximo">Próximo Mistério →</a>`;
         } else {
-            linkProximoHTML = `<a href="#${grupo}" class="btn_navegacao btn_proximo">Concluir Mistérios ✓</a>`;
+            linkProximoHTML = `<a href="#" data-route="${grupo}" class="btn_navegacao btn_proximo">Concluir Mistérios ✓</a>`;
         }
 
         const ehUltimoMisterio = numeroAtual === 5;
@@ -314,6 +320,24 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 6. EVENT LISTENERS
+// 6. INTERCEPTADOR DE CLIQUES E BOTÕES DO NAVEGADOR
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link && link.hasAttribute('data-route')) {
+        e.preventDefault();
+        e.stopPropagation();
+        link.blur();
+
+        const rotaDestino = link.getAttribute('data-route');
+        navegarPara(rotaDestino, true);
+    }
+});
+
+// Suporte ao botão 'Voltar' e 'Avançar' do celular/navegador
+window.addEventListener('popstate', () => {
+    const rotaAtual = window.location.hash.replace('#', '') || 'inicio';
+    navegarPara(rotaAtual, false);
+});
+
+// 7. INICIALIZADOR
 window.addEventListener("DOMContentLoaded", iniciarSite);
-window.addEventListener("hashchange", roteador);
