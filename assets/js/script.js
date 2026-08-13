@@ -1,4 +1,4 @@
-// Desativa a restauração automática de rolagem nativa
+// Desativa a restauração automática de rolagem nativa do navegador
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -20,10 +20,14 @@ function iniciarSite() {
             dadosMisterios = dados;
 
             const historia = dados.historia_terco;
+
+            // Imagem Inicial -> Link direto para #conteudo_historia
             const imagemHTML = historia.imagem
                 ? `<div class="container_imagem_historia">
-                    <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
-                    <span class="legenda_imagem_historia">Nossa Senhora entregou o Santo Rosário a São Domingos de Gusmão</span>
+                    <a href="#conteudo_historia" class="link_imagem_interativa" title="Clique para ler a história">
+                        <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
+                    </a>
+                    <span class="legenda_imagem_historia">Clique na imagem para ler a história completa ↓</span>
                    </div>`
                 : '';
 
@@ -35,7 +39,14 @@ function iniciarSite() {
                 return `<p>${textoLimpinho}</p>`;
             }).join('');
 
-            containerInicial.innerHTML = `<h2>${historia.titulo}</h2>${imagemHTML}${paragrafosHTML}`;
+            // Alvo da âncora inicial (#conteudo_historia)
+            containerInicial.innerHTML = `
+                ${imagemHTML}
+                <div id="conteudo_historia">
+                    <h2>${historia.titulo}</h2>
+                    ${paragrafosHTML}
+                </div>
+            `;
 
             const rotaInicial = window.location.hash.replace('#', '') || 'inicio';
             navegarPara(rotaInicial, false);
@@ -56,17 +67,14 @@ function atualizarMenuAtivo(paginaAtual) {
     });
 }
 
-// 3. ROLAGEM UNIVERSAL (Compatível com Firefox Mobile, Chrome, Safari e Samsung)
+// 3. ROLAGEM UNIVERSAL AO TROCAR DE PÁGINA
 function resetarScrollUniversal() {
-    // Remove o foco do clique para o celular não tentar prender a viewport no botão
     if (document.activeElement && document.activeElement !== document.body) {
         document.activeElement.blur();
     }
 
-    // Força o corte seco ignorando qualquer 'scroll-behavior: smooth' do CSS
     document.documentElement.style.scrollBehavior = 'auto';
 
-    // Dispara a rolagem no topo em todas as referências possíveis de navegação
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -76,7 +84,6 @@ function resetarScrollUniversal() {
 function navegarPara(rota, atualizarHistorico = true) {
     const paginaAtual = rota || 'inicio';
 
-    // PASSO 1: Zera a posição ANTES de alterar a exibição do DOM.
     resetarScrollUniversal();
 
     if (atualizarHistorico) {
@@ -100,14 +107,15 @@ function navegarPara(rota, atualizarHistorico = true) {
         exibirMisterio(paginaAtual);
     }
 
-    // PASSO 2: Zera o scroll IMEDIATAMENTE APÓS a montagem do novo HTML
     resetarScrollUniversal();
 
-    // PASSO 3: Confirmação final após a renderização do layout e carregamento das imagens
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         resetarScrollUniversal();
-        document.documentElement.style.scrollBehavior = ''; // Restaura estilo original do CSS
-    }, 80);
+        setTimeout(() => {
+            resetarScrollUniversal();
+            document.documentElement.style.scrollBehavior = '';
+        }, 60);
+    });
 }
 
 // 5. RENDERIZADOR DE CONTEÚDO
@@ -273,20 +281,25 @@ function exibirMisterio(chaveMisterio) {
             </div>
         `;
 
+        // Imagem do Mistério -> Link direto para #secao_oracoes
         containerMisterio.innerHTML = `
             ${painelNavegacaoHTML}
 
-            <div class="hero_misterio_banner" id="imagem_topo_misterio">
-                ${imagemHTML}
-                <div class="overlay_hero_texto">
-                    <span class="badge_grupo_misterio">${grupo.toUpperCase()}</span>
-                    <h3>${itemSelecionado.titulo}</h3>
-                    <p class="subtitulo_misterio_banner">${itemSelecionado.subtitulo}</p>
+            <a href="#secao_oracoes" class="link_banner_misterio" title="Clique para ir às orações">
+                <div class="hero_misterio_banner" id="imagem_topo_misterio">
+                    ${imagemHTML}
+                    <div class="overlay_hero_texto">
+                        <span class="badge_grupo_misterio">${grupo.toUpperCase()}</span>
+                        <h3>${itemSelecionado.titulo}</h3>
+                        <p class="subtitulo_misterio_banner">${itemSelecionado.subtitulo} • <em>Clique para ir às orações ↓</em></p>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <h4>Orações do Mistério</h4>
-            <ul class="lista_misterio">${oracoesHTML}</ul>
+            <div id="secao_oracoes">
+                <h4>Orações do Mistério</h4>
+                <ul class="lista_misterio">${oracoesHTML}</ul>
+            </div>
 
             ${oracoesFinaisHTML}
 
@@ -320,20 +333,40 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 6. INTERCEPTADOR DE CLIQUES E BOTÕES DO NAVEGADOR
+// 6. INTERCEPTADOR GLOBAL DE CLIQUES
 document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (link && link.hasAttribute('data-route')) {
+    // 1º CASO: Clique em link com data-route (Navegação SPA)
+    const elRota = e.target.closest('[data-route]');
+    if (elRota) {
         e.preventDefault();
         e.stopPropagation();
-        link.blur();
+        elRota.blur();
 
-        const rotaDestino = link.getAttribute('data-route');
+        const rotaDestino = elRota.getAttribute('data-route');
         navegarPara(rotaDestino, true);
+        return;
+    }
+
+    // 2º CASO: Clique em Imagem/Banner com âncora (#conteudo_historia ou #secao_oracoes)
+    const linkAncora = e.target.closest('a[href^="#"]');
+    if (linkAncora) {
+        const idAlvo = linkAncora.getAttribute('href').substring(1);
+        const elementoAlvo = document.getElementById(idAlvo);
+
+        if (elementoAlvo) {
+            e.preventDefault(); // Impede a alteração da URL para não desconfigurar o hash da SPA
+            linkAncora.blur();
+
+            // Desliza a tela suavemente até a seção desejada
+            elementoAlvo.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     }
 });
 
-// Suporte ao botão 'Voltar' e 'Avançar' do celular/navegador
+// Suporte aos botões 'Voltar' e 'Avançar' do navegador
 window.addEventListener('popstate', () => {
     const rotaAtual = window.location.hash.replace('#', '') || 'inicio';
     navegarPara(rotaAtual, false);

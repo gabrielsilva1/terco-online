@@ -177,8 +177,8 @@ header #navbar .nav_brand a:hover {
 main {
     background-color: #ffffff;
     max-width: 950px;
-    margin: 40px auto;
-    padding: 40px 35px;
+    margin: 7px auto;
+    padding: 10px 35px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     line-height: 1.8;
@@ -702,7 +702,42 @@ footer .footer_item {
 }
 
 /* ==========================================================================
-   9. RESPONSIVIDADE (Celulares e Tablets)
+   9. FORMATAÇÃO DA IMAGEM DA PÁGINA INICIAL (História)
+   ========================================================================== */
+.container_imagem_historia {
+    margin: 20px auto 25px auto;
+    text-align: center;
+    max-width: 600px;
+    background-color: #fcfbfa;
+    padding: 10px 10px 12px 10px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.imagem_historia_destaque {
+    width: 100%;
+    height: auto;
+    /* Usa no máximo 50% da altura da janela do usuário, evitando estouro de tela */
+    max-height: 60vh;
+    object-fit: contain; /* Garante 100% da imagem visível sem cortes */
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    display: block;
+    margin: 0 auto;
+}
+
+.legenda_imagem_historia {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: #64748b;
+    line-height: 1.3;
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE (Celulares e Tablets)
    ========================================================================== */
 @media (max-width: 768px) {
     header #navbar {
@@ -731,10 +766,9 @@ footer .footer_item {
         flex-direction: column;
     }
 
+    /* Oculta a sidebar em telas pequenas */
     .sidebar_misterios {
-        width: 100%;
-        position: static;
-        margin-bottom: 20px;
+        display: none !important;
     }
 
     .hero_misterio_banner {
@@ -754,33 +788,4 @@ footer .footer_item {
     .btn_contar_inline {
         width: 100%;
     }
-}
-/* ==========================================================================
-   FORMATAÇÃO DA IMAGEM DA PÁGINA INICIAL (História)
-   ========================================================================== */
-.container_imagem_historia {
-    margin: 25px auto 35px auto;
-    text-align: center;
-    max-width: 650px;
-    background-color: #fcfbfa;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
-
-.imagem_historia_destaque {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Borda dourada sutil */
-}
-
-.legenda_imagem_historia {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: #64748b;
 }
