@@ -21,13 +21,11 @@ function iniciarSite() {
 
             const historia = dados.historia_terco;
 
-            // Imagem Inicial -> Link direto para #conteudo_historia
+            // Imagem Inicial -> Agora com a classe 'img_ampliavel' e sem o link <a>
             const imagemHTML = historia.imagem
                 ? `<div class="container_imagem_historia">
-                    <a href="#conteudo_historia" class="link_imagem_interativa" title="Clique para ler a história">
-                        <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque">
-                    </a>
-                    <span class="legenda_imagem_historia">Clique na imagem para ler a história completa ↓</span>
+                    <img src="${historia.imagem}" alt="${historia.titulo}" class="imagem_historia_destaque img_ampliavel" title="Clique para ampliar">
+                    <span class="legenda_imagem_historia">A história do terço começa há muitos séculos atrás</span>
                    </div>`
                 : '';
 
@@ -39,7 +37,6 @@ function iniciarSite() {
                 return `<p>${textoLimpinho}</p>`;
             }).join('');
 
-            // Alvo da âncora inicial (#conteudo_historia)
             containerInicial.innerHTML = `
                 ${imagemHTML}
                 <div id="conteudo_historia">
@@ -198,8 +195,9 @@ function exibirMisterio(chaveMisterio) {
     }
     // CASO B: Mistério Individual
     else if (itemSelecionado.oracoes) {
+        // Adicionada a classe img_ampliavel
         const imagemHTML = itemSelecionado.imagem
-            ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio">`
+            ? `<img src="${itemSelecionado.imagem}" alt="${itemSelecionado.titulo}" class="images_misterio img_ampliavel" title="Clique para ampliar">`
             : '';
 
         let contagem = progressoDezenas[chaveMisterio] || 0;
@@ -281,20 +279,18 @@ function exibirMisterio(chaveMisterio) {
             </div>
         `;
 
-        // Imagem do Mistério -> Link direto para #secao_oracoes
+        // Removido o link <a> que envolvia a imagem
         containerMisterio.innerHTML = `
             ${painelNavegacaoHTML}
 
-            <a href="#secao_oracoes" class="link_banner_misterio" title="Clique para ir às orações">
-                <div class="hero_misterio_banner" id="imagem_topo_misterio">
-                    ${imagemHTML}
-                    <div class="overlay_hero_texto">
-                        <span class="badge_grupo_misterio">${grupo.toUpperCase()}</span>
-                        <h3>${itemSelecionado.titulo}</h3>
-                        <p class="subtitulo_misterio_banner">${itemSelecionado.subtitulo} • <em>Clique para ir às orações ↓</em></p>
-                    </div>
+            <div class="hero_misterio_banner" id="imagem_topo_misterio">
+                ${imagemHTML}
+                <div class="overlay_hero_texto">
+                    <span class="badge_grupo_misterio">${grupo.toUpperCase()}</span>
+                    <h3>${itemSelecionado.titulo}</h3>
+                    <p class="subtitulo_misterio_banner">${itemSelecionado.subtitulo}</p>
                 </div>
-            </a>
+            </div>
 
             <div id="secao_oracoes">
                 <h4>Orações do Mistério</h4>
@@ -333,9 +329,47 @@ function exibirMisterio(chaveMisterio) {
     }
 }
 
-// 6. INTERCEPTADOR GLOBAL DE CLIQUES
+// 6. MODAL/LIGHTBOX DE AMPLIAÇÃO DA IMAGEM
+function abrirModalImagem(src, alt) {
+    let modal = document.getElementById('lightbox_modal');
+
+    // Cria a estrutura do modal se ela ainda não existir
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'lightbox_modal';
+        modal.className = 'lightbox_modal';
+        modal.innerHTML = `
+            <span class="lightbox_fechar" title="Fechar">&times;</span>
+            <img class="lightbox_conteudo" id="lightbox_img" alt="Imagem ampliada">
+        `;
+        document.body.appendChild(modal);
+
+        // Fecha o modal ao clicar fora da imagem ou no 'X'
+        modal.addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox_modal' || e.target.classList.contains('lightbox_fechar')) {
+                modal.classList.remove('ativo');
+            }
+        });
+    }
+
+    const imgModal = document.getElementById('lightbox_img');
+    imgModal.src = src;
+    imgModal.alt = alt || '';
+
+    modal.classList.add('ativo');
+}
+
+// 7. INTERCEPTADOR GLOBAL DE CLIQUES
 document.addEventListener('click', (e) => {
-    // 1º CASO: Clique em link com data-route (Navegação SPA)
+    // 1º CASO: Clique na imagem para AMPLIAR
+    const imgAmpliavel = e.target.closest('.img_ampliavel');
+    if (imgAmpliavel) {
+        e.preventDefault();
+        abrirModalImagem(imgAmpliavel.src, imgAmpliavel.alt);
+        return;
+    }
+
+    // 2º CASO: Clique em link com data-route (Navegação SPA)
     const elRota = e.target.closest('[data-route]');
     if (elRota) {
         e.preventDefault();
@@ -347,22 +381,25 @@ document.addEventListener('click', (e) => {
         return;
     }
 
-    // 2º CASO: Clique em Imagem/Banner com âncora (#conteudo_historia ou #secao_oracoes)
-    const linkAncora = e.target.closest('a[href^="#"]');
-    if (linkAncora) {
+    // 3º CASO: Navegação via âncora genérica (mantido caso use no meio do texto)
+    const linkAncora = e.target.closest('a[href^="#"]:not([data-route])');
+    if (linkAncora && linkAncora.getAttribute('href').length > 1) {
         const idAlvo = linkAncora.getAttribute('href').substring(1);
         const elementoAlvo = document.getElementById(idAlvo);
 
         if (elementoAlvo) {
-            e.preventDefault(); // Impede a alteração da URL para não desconfigurar o hash da SPA
+            e.preventDefault();
             linkAncora.blur();
-
-            // Desliza a tela suavemente até a seção desejada
-            elementoAlvo.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            elementoAlvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    }
+});
+
+// Suporte para fechar o modal com a tecla ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('lightbox_modal');
+        if (modal) modal.classList.remove('ativo');
     }
 });
 
@@ -372,5 +409,5 @@ window.addEventListener('popstate', () => {
     navegarPara(rotaAtual, false);
 });
 
-// 7. INICIALIZADOR
+// 8. INICIALIZADOR
 window.addEventListener("DOMContentLoaded", iniciarSite);

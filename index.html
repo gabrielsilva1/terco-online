@@ -11,7 +11,7 @@
     <header>
         <nav id="navbar">
             <h1 class="nav_brand">
-                <a href="#">
+                <a href="#" data-route="inicio" title="Ir para a página inicial">
                     <span class="encadeado_terco">
                         <span class="cruz_logo">┼</span>
                         <span class="conta_terco"></span>
@@ -26,31 +26,30 @@
             <ul class="nav_list">
                 <li class="nav_item">
                     <a href="#" data-route="gozosos" data-misterio="gozosos">
-                    <span class="nome_misterio">Mistérios Gozosos</span>
-                    <span class="dias_menu">(Segundas e Quintas)</span>
+                        <span class="nome_misterio">Mistérios Gozosos</span>
+                        <span class="dias_menu">(Segundas e Quintas)</span>
                     </a>
                 </li>
                 <li class="nav_item">
                     <a href="#" data-route="dolorosos" data-misterio="dolorosos">
-                    <span class="nome_misterio">Mistérios Dolorosos</span>
-                    <span class="dias_menu">(Terças e Sextas)</span>
+                        <span class="nome_misterio">Mistérios Dolorosos</span>
+                        <span class="dias_menu">(Terças e Sextas)</span>
                     </a>
                 </li>
                 <li class="nav_item">
                     <a href="#" data-route="gloriosos" data-misterio="gloriosos">
-                    <span class="nome_misterio">Mistérios Gloriosos</span>
-                    <span class="dias_menu">(Quartas e Sábados)</span>
+                        <span class="nome_misterio">Mistérios Gloriosos</span>
+                        <span class="dias_menu">(Quartas e Sábados)</span>
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
+
     <main>
         <section id="texto_oracao_inicial">
             <!-- Preenchido via JS com a História do Terço -->
         </section>
-
-        <hr>
 
         <section id="conteudo_misterio">
             <p class="mensagem_ajuda">Selecione um mistério no menu acima para ler as contemplações.</p>
@@ -62,5 +61,10 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <!-- Modal para Ampliar Imagens -->
+    <div id="modal_imagem" class="lightbox_modal">
+        <span class="lightbox_fechar" id="fechar_modal">&times;</span>
+        <img class="lightbox_conteudo" id="imagem_ampliada" src="" alt="Imagem Ampliada">
+    </div>
 </body>
 </html>

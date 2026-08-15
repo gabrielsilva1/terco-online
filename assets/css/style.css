@@ -1,7 +1,17 @@
 /* ==========================================================================
    1. CONFIGURAÇÕES GERAIS & RESET
    ========================================================================== */
+html {
+    scrollbar-gutter: stable;
+}
+
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* ... resto do código ... */
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -177,8 +187,8 @@ header #navbar .nav_brand a:hover {
 main {
     background-color: #ffffff;
     max-width: 950px;
-    margin: 7px auto;
-    padding: 10px 35px;
+    margin: 40px auto;
+    padding: 40px 35px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     line-height: 1.8;
@@ -705,11 +715,11 @@ footer .footer_item {
    9. FORMATAÇÃO DA IMAGEM DA PÁGINA INICIAL (História)
    ========================================================================== */
 .container_imagem_historia {
-    margin: 20px auto 25px auto;
+    margin: 25px auto 35px auto;
     text-align: center;
-    max-width: 600px;
+    max-width: 650px;
     background-color: #fcfbfa;
-    padding: 10px 10px 12px 10px;
+    padding: 12px;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
@@ -718,22 +728,18 @@ footer .footer_item {
 .imagem_historia_destaque {
     width: 100%;
     height: auto;
-    /* Usa no máximo 50% da altura da janela do usuário, evitando estouro de tela */
-    max-height: 60vh;
-    object-fit: contain; /* Garante 100% da imagem visível sem cortes */
+    max-height: 380px; /* Limite ideal para telas de notebook */
+    object-fit: contain; /* Exibe a imagem completa sem cortes */
     border-radius: 8px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    display: block;
-    margin: 0 auto;
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Borda dourada sutil */
 }
 
 .legenda_imagem_historia {
     display: block;
-    margin-top: 8px;
-    font-size: 0.82rem;
+    margin-top: 10px;
+    font-size: 0.85rem;
     font-style: italic;
     color: #64748b;
-    line-height: 1.3;
 }
 
 /* ==========================================================================
@@ -788,4 +794,69 @@ footer .footer_item {
     .btn_contar_inline {
         width: 100%;
     }
+}
+/* ==========================================================================
+   11. MODAL / LIGHTBOX DE IMAGENS
+   ========================================================================== */
+.lightbox_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 29, 58, 0.9); /* Fundo escuro usando a cor do seu layout */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Fica acima do seu header que tem z-index 1000 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lightbox_modal.ativo {
+    display: flex;
+}
+
+.lightbox_conteudo {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border: 2px solid #40CFFF; /* Borda combinando com seu tema */
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox_fechar {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.2s ease;
+}
+
+.lightbox_fechar:hover {
+    color: #40CFFF; /* Fica azulzinho ao passar o mouse */
+}
+/* ==========================================================================
+   EFEITO DE CLIQUE NAS IMAGENS AMPLIÁVEIS
+   ========================================================================== */
+.img_ampliavel {
+    cursor: pointer; /* Transforma a setinha do mouse na "mãozinha" */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito suave ao passar o mouse por cima (opcional, mas fica bem elegante) */
+.img_ampliavel:hover {
+    transform: scale(1.02); /* Dá um zoom bem de leve na imagem */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Aumenta a sombra */
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
